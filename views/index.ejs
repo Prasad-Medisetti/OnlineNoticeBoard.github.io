@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Online Notice Board</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/glyphicons.css' />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  </head>
+  <body class="container-fluid">
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Online Notice Board</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/"><span class="nav-icon glyphicon glyphicon-home"></span>Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about"><span class="nav-icon glyphicon glyphicon-info-sign"></span>About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact"><span class="nav-icon glyphicon glyphicon-phone-alt"></span>Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="container my-5">
+      <h2 class="h2 text-center text-black-50 col mb-3 p-3 shadow border rounded-lg">Welcome to Online Notice Board</h2>
+      <div id="accordion" class="container col-md-6">
+        <div class="card p-0 my-4">
+          <div class="card-header text-center m-0 p-0">
+            <a class="card-link btn btn-light btn-lg w-100" data-toggle="collapse" href="#signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a>
+          </div>
+          <div id="signin" class="collapse show" data-parent="#accordion">
+            <div class="card-body shadow-lg m-1 p-3 rounded border">
+              <form class="needs-validation form-group" novalidate>
+                <div class="form-group">
+                  <label class="control-label" for="mail" class="form-label">Email :</label>
+                  <input type="email" class="form-control" id="mail" placeholder="Enter email" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="pwd">Password :</label>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group row">
+                  <a class="col-md-4 text-center" href="#">forget password</a>
+                  <div class="col-md-8 text-center">Not have an account, <a class="text-capitalize d-inline" href="#signup" data-toggle="collapse">sign up</a></div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign In</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header text-center m-0 p-0">
+            <a class="collapsed card-link btn btn-light btn-lg w-100" data-toggle="collapse" href="#signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+          </div>
+          <div id="signup" class="collapse" data-parent="#accordion">
+            <div class="card-body shadow-lg m-1 p-3 rounded border">
+              <form class="needs-validation" novalidate>
+                <div class="form-group">
+                  <label class="control-label" for="usersname">Username :</label>
+                  <input type="text" class="form-control" id="usersname" placeholder="Enter username" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="email">Email :</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter email"required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="pswd">Password :</label>
+                  <input type="password" class="form-control" id="pswd" placeholder="Enter password" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="phn">Phone :</label>
+                  <input type="text" class="form-control" id="phn" placeholder="Enter phone" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                  <label class="control-label" for="dob">Date Of Birth :</label>
+                  <input type="date" class="form-control" id="dob" placeholder="Enter date of birth" required>
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-group">
+                  <div class="text-center">Alredy have an account, <a class="text-capitalize d-inline" href="#signin" data-toggle="collapse">sign in</a></div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container text-center">
+        <span class="text-muted">Designed by <span class="lead text-muted font-weight-light">Prasad Medisetti</span></span>
+      </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script>
+      // Disable form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Get the forms we want to add validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      </script>
+  </body>
+</html>
