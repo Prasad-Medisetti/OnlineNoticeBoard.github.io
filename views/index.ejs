@@ -10,26 +10,26 @@
     <link rel='stylesheet' href='/stylesheets/glyphicons.css' />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   </head>
-  <body class="container-fluid">
+  <body id="page-top">
     <header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Online Notice Board</a>
+        <a class="navbar-brand font-weight-bold" href="#page-top">Online Notice Board</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav  ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/"><span class="nav-icon glyphicon glyphicon-home"></span>Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/"><span class="mr-1 glyphicon glyphicon-home"></span>Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/about"><span class="nav-icon glyphicon glyphicon-info-sign"></span>About</a>
+              <a class="nav-link" href="/about"><span class="mr-1 glyphicon glyphicon-info-sign"></span>About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact"><span class="nav-icon glyphicon glyphicon-phone-alt"></span>Contact</a>
+              <a class="nav-link" href="/contact"><span class="mr-1 glyphicon glyphicon-phone-alt"></span>Contact</a>
             </li>
           </ul>
         </div>
@@ -37,12 +37,12 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container my-5">
-      <h2 class="h2 text-center text-black-50 col mb-3 p-3 shadow border rounded-lg">Welcome to Online Notice Board</h2>
-      <div id="accordion" class="container col-md-6">
+    <main role="main" class="container my-5 text-dark">
+      <h2 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">Welcome to Online Notice Board</h2>
+      <div id="accordion" class="container col-md-6 text-dark">
         <div class="card p-0 my-4">
           <div class="card-header text-center m-0 p-0">
-            <a class="card-link btn btn-light btn-lg w-100" data-toggle="collapse" href="#signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a>
+            <a class="card-link btn btn-light btn-lg w-100 font-weight-bold" data-toggle="collapse" href="#signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a>
           </div>
           <div id="signin" class="collapse show" data-parent="#accordion">
             <div class="card-body shadow-lg m-1 p-3 rounded border">
@@ -60,17 +60,17 @@
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group row">
-                  <a class="col-md-4 text-center" href="#">forget password</a>
-                  <div class="col-md-8 text-center">Not have an account, <a class="text-capitalize d-inline" href="#signup" data-toggle="collapse">sign up</a></div>
+                  <a class="col-md-4 text-center text-capitalize" href="#">forget password</a>
+                  <div class="col-md-8 ml-auto">Not have an account, <a class="text-capitalize d-inline-block" href="#signup" data-toggle="collapse">sign up</a></div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                <button type="submit" class="btn btn-primary w-100 font-weight-bold">Sign In</button>
               </form>
             </div>
           </div>
         </div>
         <div class="card">
           <div class="card-header text-center m-0 p-0">
-            <a class="collapsed card-link btn btn-light btn-lg w-100" data-toggle="collapse" href="#signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+            <a class="collapsed card-link btn btn-light btn-lg w-100 font-weight-bold" data-toggle="collapse" href="#signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
           </div>
           <div id="signup" class="collapse" data-parent="#accordion">
             <div class="card-body shadow-lg m-1 p-3 rounded border">
@@ -106,9 +106,9 @@
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group">
-                  <div class="text-center">Alredy have an account, <a class="text-capitalize d-inline" href="#signin" data-toggle="collapse">sign in</a></div>
+                  <div class="text-center">Alredy have an account, <a class="text-capitalize d-inline-block" href="#signin" data-toggle="collapse">sign in</a></div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                <button type="submit" class="btn btn-primary w-100 font-weight-bold">Sign Up</button>
               </form>
             </div>
           </div>
@@ -116,17 +116,18 @@
       </div>
     </main>
 
-    <footer class="footer">
-      <div class="container text-center">
-        <span class="text-muted">Designed by <span class="lead text-muted font-weight-light">Prasad Medisetti</span></span>
+    <footer class="py-5 bg-dark">
+      <div class="container text-center text-white">
+        <p>Designed by <span class="myName">Prasad Medisetti</span></p>
+        <p>Copyright © 2020</p>
       </div>
     </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script>
       // Disable form submissions if there are invalid fields
       (function() {

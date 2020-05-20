@@ -10,26 +10,26 @@
     <link rel="stylesheet" href="/stylesheets/glyphicons.css">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   </head>
-  <body class="container-fluid">
+  <body id="page-top">
     <header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Online Notice Board</a>
+        <a class="navbar-brand font-weight-bold" href="/">Online Notice Board</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/"><span class="nav-icon glyphicon glyphicon-home"></span>Home</a>
+              <a class="nav-link" href="/"><span class="mr-1 glyphicon glyphicon-home"></span>Home</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="/about"><span class="nav-icon glyphicon glyphicon-info-sign"></span>About <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#page-top"><span class="mr-1 glyphicon glyphicon-info-sign"></span>About <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact"><span class="nav-icon glyphicon glyphicon-phone-alt"></span>Contact</a>
+              <a class="nav-link" href="/contact"><span class="mr-1 glyphicon glyphicon-phone-alt"></span>Contact</a>
             </li>
           </ul>
         </div>
@@ -38,7 +38,7 @@
 
     <!-- Begin page content -->
     <main role="main" class="container-fluid my-5">
-      <h1 class="h2 text-center text-black-50 col mb-3 p-3 shadow border rounded-lg">About Online Notice Board</h1>
+      <h1 class="h2 text-center text-black-50 col mb-3 p-3 shadow border rounded-lg font-weight-bold">About Online Notice Board</h1>
       <div class="container-fluid text-justify text-black-50 border rounded shadow p-4 my-3">
         <p class="text-indent">Online Notice Board is a website where the students can access
           their circulars related to their college like circulars regarding exam fee
@@ -54,16 +54,17 @@
       </div>
     </main>
 
-    <footer class="footer">
-      <div class="container text-center">
-        <span class="text-muted">Designed by <span class="lead text-muted font-weight-light">Prasad Medisetti</span></span>
+    <footer class="py-5 bg-dark">
+      <div class="container text-center text-white">
+        <p>Designed by <span class="myName">Prasad Medisetti</span></p>
+        <p>Copyright © 2020</p>
       </div>
     </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   </body>
 </html>
