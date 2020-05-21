@@ -7,10 +7,11 @@
     <meta name="author" content="">
     <title>Online Notice Board</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/glyphicons.css' />
+    <!-- <link rel='stylesheet' href='/stylesheets/glyphicons.css' /> -->
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.13.0/css/pro.min.css">
   </head>
   <body id='page-top'>
     <header>
@@ -23,13 +24,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/admin"><span class="mr-1 glyphicon glyphicon-home"></span>Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/admin"><i class="fad fa-home mr-1"></i>Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/about"><span class="mr-1 glyphicon glyphicon-info-sign"></span>About</a>
+              <a class="nav-link" href="/about"><i class="fad fa-info-circle mr-1"></i>About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/contact"><span class="mr-1 glyphicon glyphicon-phone-alt"></span>Contact</a>
+              <a class="nav-link" href="/contact"><i class="fad fa-id-badge mr-1"></i>Contact</a>
             </li>
           </ul>
         </div>
@@ -41,7 +42,7 @@
       <h2 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">Welcome to Admin Login</h2>
       <div class="container  col-md-6">
         <div class="card">
-          <span class="card-header text-center font-weight-bold"><span class="glyphicon glyphicon-user"></span> Admin</span>
+          <p class="card-header lead text-center font-weight-bold"><i class="fad fa-user mr-1"></i>Admin</p>
           <div class="card-body shadow-lg m-1 p-3 rounded border">
             <form class="needs-validation form-group" novalidate>
               <div class="form-group">
@@ -56,7 +57,7 @@
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
               </div>
-              <button type="submit" class="btn btn-primary w-100 font-weight-bold" onclick="window.location.href='/admindashboard'">Sign In</button>
+              <button type="submit" class="btn btn-primary w-100 font-weight-bold" onclick="window.location.href='/dashboard'">Sign In</button>
             </form>
           </div>
         </div>
@@ -66,7 +67,7 @@
     <footer class="py-5 bg-dark">
       <div class="container text-center text-white">
         <p>Designed by <span class="myName">Prasad Medisetti</span></p>
-        <p>Copyright © 2020</p>
+        <p>Copyright <i class="fad fa-copyright"></i> 2020</p>
       </div>
     </footer>
 

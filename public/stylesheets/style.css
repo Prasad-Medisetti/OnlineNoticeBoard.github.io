@@ -23,17 +23,18 @@ body {
 /* Not required for template or sticky footer method. */
 
 body {
-  padding-top: 60px; 
+  padding-top: 48px !important; 
 }
 main {
-  min-height: 400px !important;
+  min-height: 500px !important;
 }
 
 .navbar-brand {
   /* font-size: large !important; */
   text-shadow: 0 0 10px white;
-  animation: blink 3s infinite 0s ease;
-  /* font-weight: bold; */
+  animation: blink 3s infinite ease;
+  font-family: 'Courier New', Courier, monospace !important;
+  /* color: #3FD3B5 !important; */
 }
 
 @keyframes blink {
@@ -46,19 +47,24 @@ main {
 }
 
 .nav-link {
-  /* font-size: small !important; */
+  font-family: 'Courier New', Courier, monospace !important;
   width: max-content;
   text-transform: capitalize;
+  color: white !important;
+  opacity: .75;
+  font-weight: bold;
 }
 
-.active {
-  text-shadow: 0 0 5px white !important;
+.active * {
+  color: aqua !important;
+  text-shadow: 0 0 5px aqua;
+  /* text-decoration: underline; */
+  opacity: 1;
 }
 
 .nav-link:hover {
   /* text-decoration: underline !important; */
   text-decoration: underline !important;
-  text-shadow: 0 0 3px white;
 }
 
 .text-indent {
@@ -77,4 +83,26 @@ footer .myName {
 
 footer .myName:hover {
   text-decoration: underline;
+} 
+
+a:hover {
+  opacity: 1 !important;
 }
+
+a {
+  transition: .4s !important;
+}
+
+a:hover, a:hover i {
+  color: aqua !important;
+  text-shadow: 0 0 5px aqua;
+}
+
+.dropdown-toggle::after {
+  vertical-align: middle !important;
+}
+/* 
+.dropdown-menu {
+  max-width: max-content;
+  margin-left: -50px !important;
+} */

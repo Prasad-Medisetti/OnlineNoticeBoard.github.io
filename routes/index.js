@@ -20,6 +20,10 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.get('/home', function(req, res, next) {
+  res.render('userhome');
+});
+
 router.get('/qrcode', function(req, res, next) {
   QRCode.toDataURL('Prasad', function (err, qrcode) {
     res.render('qrcode', {qrcode : qrcode});
@@ -38,19 +42,20 @@ router.get('/admin', function(req, res, next) {
   res.render('adminlogin');
 });
 
-router.get('/admindashboard', function(req, res, next) {
+router.get('/dashboard', function(req, res, next) {
   res.render('admindashboard');
 });
 
 router.get('/image', function(req,res){
   image.find({}, function(err,docs){
     console.log(docs);
-    res.render('image', {"a":docs});
+    res.render('image', { users : docs });
   })
 });
 
 router.post('/imageupload', upload.single('image'), function(req, res) {
   console.log(req.file);
+  image.insert({"image":req.file.originalname});
   res.redirect('/image');
 });
 
