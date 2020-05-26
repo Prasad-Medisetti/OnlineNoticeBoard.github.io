@@ -21,7 +21,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/home', function(req, res, next) {
-  res.render('userhome');
+  res.render('User/userhome');
+});
+
+router.get('/profile', function(req, res, next) {
+  res.render('User/userprofile');
 });
 
 router.get('/qrcode', function(req, res, next) {
@@ -39,11 +43,15 @@ router.get('/contact', function(req, res, next) {
 });
 
 router.get('/admin', function(req, res, next) {
-  res.render('adminlogin');
+  res.render('Admin/adminlogin');
+});
+
+router.get('/postnotice', function(req, res, next) {
+  res.render('Admin/postnotice');
 });
 
 router.get('/dashboard', function(req, res, next) {
-  res.render('admindashboard');
+  res.render('Admin/admindashboard');
 });
 
 router.get('/image', function(req,res){

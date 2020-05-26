@@ -93,7 +93,7 @@ a {
   transition: .4s !important;
 }
 
-a:hover, a:hover i {
+li > a:hover, li > a:hover i {
   color: aqua !important;
   text-shadow: 0 0 5px aqua;
 }
@@ -101,8 +101,35 @@ a:hover, a:hover i {
 .dropdown-toggle::after {
   vertical-align: middle !important;
 }
-/* 
-.dropdown-menu {
-  max-width: max-content;
-  margin-left: -50px !important;
-} */
+
+.dropdown-item:hover {
+  color: aqua !important;
+  text-shadow: 0 0 5px aqua !important;
+  text-decoration: underline !important;
+}
+
+hr {
+  border-width: 2px !important;
+}
+
+img {
+  pointer-events: none !important;
+}
+
+.dropdown-item.active {
+  color: aqua !important;
+  text-shadow: 0 0 5px aqua;
+}
+
+
+/*Scroll Bar*/
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 15px; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}

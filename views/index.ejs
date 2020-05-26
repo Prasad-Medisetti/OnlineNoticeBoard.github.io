@@ -38,7 +38,7 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container my-5 text-dark">
+    <main role="main" class="container my-5 text-dark" ng-app="">
       <h2 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">Welcome to Online Notice Board</h2>
       <div id="accordion" class="container col-md-6 text-dark">
         <div class="card p-0 my-4">
@@ -69,18 +69,46 @@
             </div>
           </div>
         </div>
-        <div class="card">
+        <div class="card" ng-init="revealPwd=true">
           <div class="card-header text-center m-0 p-0">
-            <span class="collapsed card-link btn btn-light btn-lg w-100 font-weight-bold" data-toggle="collapse" href="#signup"><i class="fad fa-user-alt mr-1"></i>Sign Up</span>
+            <span class="collapsed btn btn-light btn-lg w-100 font-weight-bold" data-toggle="collapse" href="#signup"><i class="fad fa-user-alt mr-1"></i>Sign Up</span>
           </div>
           <div id="signup" class="collapse" data-parent="#accordion">
             <div class="card-body shadow-lg m-1 p-3 rounded border">
               <form class="needs-validation" novalidate>
+                <div class="form-row py-3">
+                  <div class="col">
+                    <label class="control-label" for="fname">First Name :</label>
+                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name" required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                  </div>
+                  <div class="col">
+                    <label class="control-label" for="lname">Last Name :</label>
+                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label class="control-label" for="usersname">Username :</label>
                   <input type="text" class="form-control" id="usersname" placeholder="Enter username" required>
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+                <div class="form-row my-2 px-2">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="male" name="gender" value="male">
+                    <label class="custom-control-label" for="male">Male</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="female" name="gender" value="female">
+                    <label class="custom-control-label" for="female">Female</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="others" name="gender" value="others">
+                    <label class="custom-control-label" for="others">Others</label>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="email">Email :</label>
@@ -90,9 +118,15 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="pswd">Password :</label>
-                  <input type="password" class="form-control" id="pswd" placeholder="Enter password" required>
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Please fill out this field.</div>
+                  <div class="input-group rounded" style="border: 1px solid #ced4da; border-radius: 0.25rem;">
+                    <input type="password" class="form-control pwd border-0"  id="pswd" placeholder="Enter password" required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <span class="input-group-btn">
+                      <a class="reveal btn btn-white" type="button" ng-show="revealPwd" ng-click="revealPwd = false"><i class="far fa-eye"></i></a>
+                      <a class="reveal btn btn-white" type="button" ng-hide="revealPwd"  ng-click="revealPwd = true"><i class="far fa-eye-slash"></i></a>
+                    </span> 
+                  </div>  
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="phn">Phone :</label>
@@ -130,6 +164,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://use.fortawesome.com/349cfdf6.js"></script>
+    <script src="/javascripts/angular.min.js"></script>
     <script>
       // Disable form submissions if there are invalid fields
       (function() {
@@ -149,6 +184,16 @@
           });
         }, false);
       })();
-      </script>
+
+
+      $(".reveal").on('click',function() {
+          var $pwd = $(".pwd");
+          if ($pwd.attr('type') === 'password') {
+              $pwd.attr('type', 'text');
+          } else {
+              $pwd.attr('type', 'password');
+          }
+      });
+    </script>
   </body>
 </html>
