@@ -51,7 +51,7 @@
     <!-- Begin page content -->
     <main role="main" class="container-fluid my-5" ng-app="" ng-init="disabled = true; editProfileImg = true">
       <h1 class="h2 text-center mb-4 p-3 shadow border rounded-lg">Profile</h1>
-      <div class="container col-md-6 p-3 bg-light shadow-lg rounded-lg border">
+      <form class="container col-md-6 p-3 bg-light shadow-lg rounded-lg border">
         <div class="row px-3 text-center">
           <div class="col p-3">
             <img src="/uploads/user.jpg" class="rounded-circle border p-1 bg-light" alt="user" height="180" width="180">
@@ -60,7 +60,7 @@
         <div class="row text-center">
           <div class="px-3 col">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" accept="image/*" id="customFile" ng-modal="profileImg" ng-disabled="editProfileImg">
+              <input required type="file" class="custom-file-input required" accept="image/*" id="customFile" ng-modal="profileImg" ng-disabled="editProfileImg">
               <label class="custom-file-label" for="customFile">Choose an Image</label>
             </div>
             <button class="btn btn-info my-2 w-100" ng-show="editProfileImg" ng-click="editProfileImg = false">Change Profile Image</button>
@@ -71,11 +71,11 @@
         <div class="row">
           <div class="col border-right">
             <label class="control-label" for="fname">First Name :</label>
-            <input type="text" class="form-control" id="fname" value="Prasad" ng-disabled="disabled">
+            <input required type="text" class="form-control" id="fname" value="Prasad" ng-disabled="disabled">
           </div>
           <div class="col border-left">
             <label class="control-label" for="lname">Last Name :</label>
-            <input type="text" class="form-control" id="lname" value="Medisetti" ng-disabled="disabled">
+            <input required type="text" class="form-control" id="lname" value="Medisetti" ng-disabled="disabled">
           </div>
         </div>
         <!-- <div class="row px-3">
@@ -85,21 +85,28 @@
         <div class="row">
           <div class="col">
             <label class="control-label" for="uname">User Name :</label>
-            <input type="text" class="form-control" id="uname" value="PrasadM" ng-disabled="disabled">
+            <input required type="text" class="form-control" id="uname" value="PrasadM" ng-disabled="disabled">
           </div>
         </div>
         <!-- <div class="row px-3">
           <div class="col border-right">Username</div><div class="col border-left">uname</div>
         </div> -->
         <hr>
-        <div class="row">
-          <div class="col">
-            <label class="control-label" for="gender">Gender :</label>
-            <select name="gender" class="custom-select" ng-disabled="disabled">
-              <option selected value="male">Male</option>
-              <option value="femle">Female</option>
-              <option value="Others">Others</option>
-            </select>
+        <div class="form-row my-2 px-2">
+          <label class="control-label" for="gender">Gender :</label>
+          <div class="container-fluid mx-n3">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input required type="radio" class="custom-control-input" id="male" name="gender" value="male" ng-disabled="disabled">
+              <label class="custom-control-label" for="male">Male</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input required type="radio" class="custom-control-input" id="female" name="gender" value="female" ng-disabled="disabled">
+              <label class="custom-control-label" for="female">Female</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input required type="radio" class="custom-control-input" id="others" name="gender" value="others" ng-disabled="disabled">
+              <label class="custom-control-label" for="others">Others</label>
+            </div>
           </div>
         </div>
         <hr>
@@ -109,7 +116,7 @@
         <div class="row">
           <div class="col">
             <label class="control-label" for="uname">Email :</label>
-            <input type="email" class="form-control" id="email" value="prasadmedisetti34@gmail.com" ng-disabled="disabled">
+            <input required type="email" class="form-control" id="email" value="prasadmedisetti34@gmail.com" ng-disabled="disabled">
           </div>
         </div>
         <hr>
@@ -119,23 +126,23 @@
         <div class="row">
           <div class="col">
             <label class="control-label" for="Phone">Phone :</label>
-            <input type="tel" class="form-control" id="Phone" value="9666502388" ng-disabled="disabled">
+            <input required type="tel" class="form-control" id="Phone" value="9666502388" ng-disabled="disabled">
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col">
             <label class="control-label" for="dob">Date Of Birth :</label>
-            <input type="date" class="form-control" name="dob" id="dob" value="2000-06-27" ng-disabled="disabled">
+            <input required type="date" class="form-control" name="dob" id="dob" value="2000-06-27" ng-disabled="disabled">
           </div>
         </div>
         <div class="row mt-3">
           <div class="col">
             <button class="btn btn-info w-100" ng-hide="editUser" ng-click="disabled = false; editUser = true"><i class="fad fa-user-edit mr-1"></i>Edit Profile</button>
-            <button type="submit" class="btn btn-success w-100" ng-show="editUser"  ng-click="disabled = true; editUser = false"><i class="fad fa-user-check mr-1"></i>Update Profile</button>
+            <button type="submit" class="btn btn-success w-100" ng-show="editUser" ng-click="disabled = true; editUser = false"><i class="fad fa-user-check mr-1"></i>Update Profile</button>
           </div>
         </div>
-      </div>
+      </form>
     </main>
 
     <footer class="py-5 bg-dark">
@@ -154,8 +161,28 @@
     
     <!-- Custom JavaScript -->
     <script>
+      // Disable form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Get the forms we want to add validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+
+
       // Add the following code if you want the name of the file appear on select
-      $(".custom-file-input").on("change", function() {
+      $(".custom-file-input required").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
       });

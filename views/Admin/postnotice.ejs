@@ -37,8 +37,8 @@
             <li class="nav-item dropdown mr-auto pr-5">              
               <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i>Admin</a>
               <div class="dropdown-menu bg-dark border-0">
-                <a class="dropdown-item active bg-dark text-white" href="#"><i class="fad fa-envelope mr-1"></i>Notifications<span class="sr-only">(current)</span></a>
-                <a class="dropdown-item bg-dark text-white" href="/postnotice"><i class="fad fa-paper-plane mr-1"></i>Post Notice</a>
+                <a class="dropdown-item bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Notifications</a>
+                <a class="dropdown-item active bg-dark text-white" href="/postnotice"><i class="fad fa-paper-plane mr-1"></i>Post Notice<span class="sr-only">(current)</span></a>
                 <a class="dropdown-item bg-dark text-white" href="/profile"><i class="fad fa-user mr-1"></i>Profile</a>
                 <a class="dropdown-item bg-dark text-white" href="/logout">Logout</a>
               </div>
@@ -50,65 +50,28 @@
 
     <!-- Begin page content -->
     <main role="main" class="container-fluid my-5">
-      <h1 class="h2 text-center mb-3 p-3 shadow border rounded-lg">Welcome to Online Notice Board</h1>
-      <div class="table-responsive shadow-lg col-md-10 pt-3 container rounded">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Subject</th>
-              <th>Details</th>
-              <th>Posted on</th>
-              <th>More info</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-              <td>
-                <!-- Button to Open the Modal -->
-                <button type="button" class="btn btn-outline-secondary col" data-toggle="modal" data-target="#myModal">
-                  <i class="far fa-info-circle mr-1"></i>Click here!
-                </button>
-
-                <!-- The Modal -->
-                <div class="modal fade" id="myModal">
-                  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                      <!-- Modal Header -->
-                      <div class="modal-header">
-                        <h1 class="modal-title">Modal Heading</h1>
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                      </div>
-                      
-                      <!-- Modal body -->
-                      <div class="modal-body">
-                        <h3>Some text to enable scrolling..</h3>
-                        <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <img src="/uploads/user.jpg" class="img-responsive rounded" alt="" width="750">
-                      </div>
-                      
-                      <!-- Modal footer -->
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-              <td>sit</td>
-            </tr>
-          </tbody>
-        </table>
+      <h2 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">New Post</h2>
+      <div class="container  col-md-6 col-10">
+        <div class="card">
+          <p class="card-header lead text-center font-weight-bold"><i class="fad fa-plus-circle mr-1"></i>New Notice</p>
+          <div class="card-body shadow-lg m-1 p-3 rounded border">
+            <form class="needs-validation form-group" novalidate>
+              <div class="form-group">
+                <label class="control-label" for="mail" class="form-label">Subject :</label>
+                <input type="text" class="form-control" id="mail" placeholder="Enter subject" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+              </div>
+              <div class="form-group">
+                <label class="control-label" for="pwd">Password :</label>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" required>
+                <div class="valid-feedback">Valid.</div>
+                <div class="invalid-feedback">Please fill out this field.</div>
+              </div>
+              <button type="submit" class="btn btn-primary w-100 font-weight-bold" onclick="window.location.href='/dashboard'">Sign In</button>
+            </form>
+          </div>
+        </div>
       </div>
     </main>
 

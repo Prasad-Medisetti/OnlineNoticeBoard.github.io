@@ -33,8 +33,15 @@ main {
   /* font-size: large !important; */
   text-shadow: 0 0 10px white;
   animation: blink 3s infinite ease;
+  /* font-size: medium !important; */
   font-family: 'Courier New', Courier, monospace !important;
   /* color: #3FD3B5 !important; */
+  /* background: url('/images/favicon.png');
+  background-size: cover; */
+}
+
+.navbar-brand > img {
+  opacity: 1;
 }
 
 @keyframes blink {
