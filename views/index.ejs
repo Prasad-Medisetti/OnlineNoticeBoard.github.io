@@ -18,7 +18,7 @@
     <header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand font-weight-bold" href="#page-top"><img class="rounded mr-1" src="/images/noticeboard.png" alt="logo" width="24" height="24">Online Notice Board</a>
+        <a class="navbar-brand font-weight-bold" href="/"><img class="rounded mr-1" src="/images/noticeboard.png" alt="logo" width="24" height="24">Online Notice Board</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,10 +39,10 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container my-5 text-dark" ng-app="">
+    <main role="main" class="container my-5 text-dark" ng-app="loginSignUpApp">
       <h2 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">Welcome to Online Notice Board</h2>
-      <div id="accordion" class="container col-md-6 text-dark">
-        <div class="card p-0 my-4">
+      <div id="accordion" class="container col-md-8 text-dark">
+        <div class="card p-0 my-4" ng-controller="loginController">
           <div class="card-header text-center m-0 p-0">
             <span class="card-link btn btn-light btn-lg w-100 font-weight-bold" data-toggle="collapse" href="#signin"><i class="fad fa-sign-in-alt mr-1"></i>Sign In</span>
           </div>
@@ -51,13 +51,13 @@
               <form class="needs-validation form-group" novalidate>
                 <div class="form-group">
                   <label class="control-label" for="mail" class="form-label">Email :</label>
-                  <input type="email" class="form-control" id="mail" placeholder="Enter email" required>
+                  <input type="email" class="form-control" id="mail" placeholder="Enter email" required ng-model="log.email">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="pwd">Password :</label>
-                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" required>
+                  <input type="password" class="form-control" id="pwd" placeholder="Enter password" required ng-model="log.password">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
@@ -65,12 +65,12 @@
                   <a class="col-md-4 text-center text-capitalize" href="#">forget password</a>
                   <div class="col-md-8 ml-auto">Not have an account, <a class="text-capitalize d-inline-block" href="#signup" data-toggle="collapse">sign up</a></div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 font-weight-bold">Sign In</button>
+                <button type="submit" class="btn btn-primary w-100 font-weight-bold" ng-click="signin(log)">Sign In</button>
               </form>
             </div>
           </div>
         </div>
-        <div class="card" ng-init="revealPwd=true">
+        <div class="card" ng-controller="signupController" ng-init="revealPwd = true; newuser = {}">
           <div class="card-header text-center m-0 p-0">
             <span class="collapsed btn btn-light btn-lg w-100 font-weight-bold" data-toggle="collapse" href="#signup"><i class="fad fa-user-alt mr-1"></i>Sign Up</span>
           </div>
@@ -80,72 +80,73 @@
                 <div class="form-row py-3">
                   <div class="col">
                     <label class="control-label" for="fname">First Name :</label>
-                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name" required>
+                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name" required ng-model="newuser.firstname">
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
                   </div>
                   <div class="col">
                     <label class="control-label" for="lname">Last Name :</label>
-                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" required>
+                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" required ng-model="newuser.lastname">
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="usersname">Username :</label>
-                  <input type="text" class="form-control" id="usersname" placeholder="Enter username" required>
+                  <input type="text" class="form-control" id="usersname" placeholder="Enter username" required ng-model="newuser.username">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-row my-2 px-2">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="male" name="gender" value="male">
+                    <input type="radio" class="custom-control-input" id="male" name="gender" value="male" ng-model="newuser.gender">
                     <label class="custom-control-label" for="male">Male</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="female" name="gender" value="female">
+                    <input type="radio" class="custom-control-input" id="female" name="gender" value="female" ng-model="newuser.gender">
                     <label class="custom-control-label" for="female">Female</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="others" name="gender" value="others">
+                    <input type="radio" class="custom-control-input" id="others" name="gender" value="others" ng-model="newuser.gender">
                     <label class="custom-control-label" for="others">Others</label>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="email">Email :</label>
-                  <input type="email" class="form-control" id="email" placeholder="Enter email"required>
+                  <input type="email" class="form-control" id="email" placeholder="Enter email" required ng-model="newuser.email">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="pswd">Password :</label>
-                  <div class="input-group rounded" style="border: 1px solid #ced4da; border-radius: 0.25rem;">
-                    <input type="password" class="form-control pwd border-0"  id="pswd" placeholder="Enter password" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                  <div class="input-group border rounded">
+                    <input type="password" class="form-control pwd border-0"  id="pswd" placeholder="Enter password" required required ng-model="newuser.password">
                     <span class="input-group-btn">
                       <a class="reveal btn btn-white" type="button" ng-show="revealPwd" ng-click="revealPwd = false"><i class="far fa-eye"></i></a>
                       <a class="reveal btn btn-white" type="button" ng-hide="revealPwd"  ng-click="revealPwd = true"><i class="far fa-eye-slash"></i></a>
                     </span> 
                   </div>  
+                  <div class="valid-feedback">Valid.</div>
+                  <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="phn">Phone :</label>
-                  <input type="text" class="form-control" id="phn" placeholder="Enter phone" required>
+                  <input type="text" class="form-control" id="phn" placeholder="Enter phone" required ng-model="newuser.phone">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="dob">Date Of Birth :</label>
-                  <input type="date" class="form-control" id="dob" placeholder="Enter date of birth" required>
+                  <input type="date" class="form-control" id="dob" placeholder="Enter date of birth" required ng-model="newuser.dob">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group">
                   <div class="text-center">Alredy have an account, <a class="text-capitalize d-inline-block" href="#signin" data-toggle="collapse">sign in</a></div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 font-weight-bold">Sign Up</button>
+                <button type="submit" class="btn btn-primary w-100 font-weight-bold" ng-click="signup(newuser)">Sign Up</button>
               </form>
+              <!-- <p class="p-5 border">{{ newuser.gender }}</p> -->
             </div>
           </div>
         </div>
@@ -164,8 +165,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://use.fortawesome.com/349cfdf6.js"></script>
-    <script src="/javascripts/angular.min.js"></script>
+    <!-- <script src="https://use.fortawesome.com/349cfdf6.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     <script>
       // Disable form submissions if there are invalid fields
       (function() {
@@ -194,6 +195,49 @@
           } else {
               $pwd.attr('type', 'password');
           }
+      });
+    </script>
+    
+    <script>
+      var app = angular.module('loginSignUpApp', []);
+      
+      /* Controller for SignUp */
+      app.controller('signupController', function($scope, $http, $window){
+
+        $scope.signup = function(user){
+          $http({
+            method : 'POST',
+            url : 'postsignup',
+            data : $scope.newuser
+          }).then( function success(response){
+            // console.log($scope.newuser);
+            alert('Registered Successfully');
+            $window.location.href = '/'
+            $scope.reg = {};
+          }, function error(response){
+            alert('Registration Failed, Please try again');
+          });
+        }
+        
+      });
+
+      /* Controller for Login */
+      app.controller('loginController', function($scope,$http,$window){
+
+        $scope.signin = function(log){
+          $http({
+            method:'POST',
+            url: '/postuserlogin',
+            data: $scope.log
+          }).then(function success(response) {
+            alert('Login Successfull...');
+            $window.location.href = '/home'
+          }, function error(response){
+            alert('Invalid Credentials...');
+            $scope.log = {};
+          });
+        }
+
       });
     </script>
   </body>

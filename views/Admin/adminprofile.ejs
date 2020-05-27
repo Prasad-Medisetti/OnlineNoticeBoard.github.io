@@ -193,15 +193,7 @@
       var app = angular.module('myApp', []);
       app.controller('profileController', function($scope, $http) {
 
-        $http({
-          method : 'GET',
-          url : '/profile',
-        }).then(function success(response) {
-          // console.log(response.data);
-          $scope.userprofile = response.data;
-        },function error(response) {
-          alert('error occured, please try again later!')
-        })
+        
       
       });
 
