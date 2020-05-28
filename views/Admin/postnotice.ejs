@@ -34,12 +34,13 @@
               <a class="nav-link" href="/contact"><i class="fad fa-id-badge mr-1"></i>Contact</a>
             </li> -->
             <!-- Dropdown -->
-            <li class="nav-item dropdown mr-auto pr-5">              
+            <li class="nav-item dropdown mr-4 pr-5">              
               <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i>Admin</a>
               <div class="dropdown-menu bg-dark border-0">
-                <a class="dropdown-item bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Notifications</a>
+                <a class="dropdown-item bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Dashboard</a>
                 <a class="dropdown-item active bg-dark text-white" href="/postnotice"><i class="fad fa-paper-plane mr-1"></i>Post Notice<span class="sr-only">(current)</span></a>
                 <a class="dropdown-item bg-dark text-white" href="/adminprofile"><i class="fad fa-user mr-1"></i>Profile</a>
+                <a class="dropdown-item bg-dark text-white" href="/changeadminpassword"><i class="fad fa-key mr-1"></i>Change Password</a>
                 <a class="dropdown-item bg-dark text-white" href="/adminlogout">Logout</a>
               </div>
             </li>
@@ -49,26 +50,33 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container-fluid my-5">
-      <h2 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">New Post</h2>
-      <div class="container  col-md-8">
+    <main role="main" class="container-fluid my-5 py-4" ng-app="changePasswordApp" ng-controller="changeAdminPasswordController" ng-init="revealPwd = true; revealrePwd = true">
+      <div class="container col-md-8">
         <div class="card">
-          <p class="card-header lead text-center font-weight-bold"><i class="fad fa-plus-circle mr-1"></i>New Notice</p>
+          <h2 class="card-header h3 text-center font-weight-bold"><i class="fad fa-plus-circle mr-1"></i>New Notice</h2>
           <div class="card-body shadow-lg m-1 p-3 rounded border">
-            <form class="needs-validation form-group" novalidate>
+            <form class="needs-validation form-group" novalidate action="/imageupload" method="POST" enctype="multipart/form-data" name="image">
               <div class="form-group">
-                <label class="control-label" for="mail" class="form-label">Subject :</label>
-                <input type="text" class="form-control" id="mail" placeholder="Enter subject" required>
+                <label class="control-label" for="subject" class="form-label">Subject :</label>
+                <input type="text" class="form-control" id="subject" placeholder="Enter subject" required>
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
               </div>
               <div class="form-group">
-                <label class="control-label" for="pwd">Password :</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" required>
+                <label class="control-label" for="description" class="form-label">Description :</label>
+                <textarea class="form-control" id="description" cols="30" rows="5" placeholder="Enter description" required></textarea>
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
               </div>
-              <button type="submit" class="btn btn-primary w-100 font-weight-bold" onclick="window.location.href='/dashboard'">Sign In</button>
+              <div class="form-group">
+                <div class="custom-file">
+                  <input required type="file" class="custom-file-input required" accept="image/*" id="customFile" ng-modal="profileImg" ng-disabled="editProfileImg">
+                  <label class="custom-file-label" for="customFile">Choose an Image</label>
+                </div>
+              </div>
+              <div class="form-group mb-n2">
+                <button type="submit" class="btn btn-primary w-100 font-weight-bold" required ng-click="postnotice"><i class="fad fa-paper-plane mr-1"></i>Post Notice</button>
+              </div>
             </form>
           </div>
         </div>

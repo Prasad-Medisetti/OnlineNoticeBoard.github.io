@@ -107,6 +107,18 @@ router.get('/dashboard', function(req, res, next) {
   }
 });
 
+router.get('/changeadminpassword', function(req, res, next) {
+  if(req.session && req.session.admin){
+    // console.log(req.session.user);
+    res.locals.admin = req.session.admin;
+    res.render('Admin/changepassword');
+  }
+  else{
+    req.session.reset();
+    res.redirect('/admin');
+  }
+});
+
 router.get('/image', function(req,res){
   image.find({}, function(err,docs){
     console.log(docs);
@@ -146,19 +158,6 @@ router.post('/imageupload', upload.single('image'), function(req, res) {
   res.redirect('/image');
 });
 
-router.post('/postuser', function(req, res){
-  //console.log(req.body);
-  col.insert(req.body, function(err, docs){
-    if(err) {
-      console.log(err);
-    }
-    else{
-      //console.log(docs);
-      res.send(docs);
-    }
-  })
-})
-
 /* LoginSignUp */
 router.post('/postsignup', function(req, res) {
   var data = {
@@ -191,7 +190,7 @@ router.post('/postuserlogin', function(req, res) {
     // console.log(password1);
     // console.log(password2);
     // console.log(data);
-    req.session.user = data[0];
+    req.session.user = data;
     // req.session.user = data[0];
     if(password1 == password2) {
       res.sendStatus(200);

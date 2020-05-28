@@ -112,7 +112,7 @@ li > a:hover, li > a:hover i {
 .dropdown-item:hover {
   color: aqua !important;
   text-shadow: 0 0 5px aqua !important;
-  text-decoration: underline !important;
+  /* text-decoration: underline !important; */
 }
 
 hr {

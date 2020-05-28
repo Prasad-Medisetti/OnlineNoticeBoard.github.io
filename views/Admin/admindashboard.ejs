@@ -34,12 +34,13 @@
               <a class="nav-link" href="/contact"><i class="fad fa-id-badge mr-1"></i>Contact</a>
             </li> -->
             <!-- Dropdown -->
-            <li class="nav-item dropdown mr-auto pr-5">              
+            <li class="nav-item dropdown mr-4 pr-5">              
               <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i>Admin</a>
               <div class="dropdown-menu bg-dark border-0">
-                <a class="dropdown-item active bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Notifications<span class="sr-only">(current)</span></a>
+                <a class="dropdown-item active bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Dashboard<span class="sr-only">(current)</span></a>
                 <a class="dropdown-item bg-dark text-white" href="/postnotice"><i class="fad fa-paper-plane mr-1"></i>Post Notice</a>
                 <a class="dropdown-item bg-dark text-white" href="/adminprofile"><i class="fad fa-user mr-1"></i>Profile</a>
+                <a class="dropdown-item bg-dark text-white" href="/changeadminpassword"><i class="fad fa-key mr-1"></i>Change Password</a>
                 <a class="dropdown-item bg-dark text-white" href="/adminlogout">Logout</a>
               </div>
             </li>
@@ -49,66 +50,70 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container-fluid my-5">
-      <h1 class="h2 text-center mb-3 p-3 shadow border rounded-lg">Dashboard</h1>
-      <div class="table-responsive shadow-lg col-md-10 pt-3 container rounded">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Subject</th>
-              <th>Details</th>
-              <th>Posted on</th>
-              <th>More info</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-              <td>
-                <!-- Button to Open the Modal -->
-                <button type="button" class="btn btn-outline-secondary col" data-toggle="modal" data-target="#myModal">
-                  <i class="far fa-info-circle mr-1"></i>Click here!
-                </button>
-
-                <!-- The Modal -->
-                <div class="modal fade" id="myModal">
-                  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                    <div class="modal-content">
-                      <!-- Modal Header -->
-                      <div class="modal-header">
-                        <h1 class="modal-title">Modal Heading</h1>
-                        <button type="button" class="close" data-dismiss="modal">×</button>
+    <main role="main" class="container-fluid mt-5 pt-5 mb-n5 pb-n4" ng-app="changePasswordApp" ng-controller="changeAdminPasswordController">
+      <div class="container col-md-11">
+        <div class="card">
+          <h2 class="card-header h3 text-center font-weight-bold">Dashboard</h2>
+          <div class="card-body p-2">
+            <div class="table-responsive shadow-lg">
+              <table class="table table-bordered table-hover mb-n1">
+                <thead class="text-center">
+                  <tr>
+                    <th>#</th>
+                    <th>Subject</th>
+                    <th>Posted on</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center">
+                  <tr>
+                    <td>1</td>
+                    <td>Subject</td>
+                    <td>27-05-2020 12:00 PM</td>
+                    <td>
+                      <!-- Button to Open the Modal -->
+                      <a class="btn btn-light" data-toggle="modal" data-target="#myModal"><i class="far fa-info-circle"></i></a>
+      
+                      <!-- The Modal -->
+                      <div class="modal fade" id="myModal">
+                        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                          <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                              <h1 class="modal-title">Modal Heading</h1>
+                              <button type="button" class="btn btn-outline-danger" class="close" data-dismiss="modal">×</button>
+                            </div>
+                            
+                            <!-- Modal body -->
+                            <div class="modal-body text-justify">
+                              <h3>Some text to enable scrolling..</h3>
+                              <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                              <img src="/uploads/bg.jpg" class="img-responsive rounded w-100 h-100" alt="">
+                            </div>
+                            
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      
-                      <!-- Modal body -->
-                      <div class="modal-body">
-                        <h3>Some text to enable scrolling..</h3>
-                        <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <img src="/uploads/user.jpg" class="img-responsive rounded" alt="" width="750">
-                      </div>
-                      
-                      <!-- Modal footer -->
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-              <td>sit</td>
-            </tr>
-          </tbody>
-        </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>Subject</td>
+                    <td>dolor</td>
+                    <td>
+                      <!-- Button to Open the Modal -->
+                      <a class="btn btn-light"><i class="far fa-info-circle"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 
