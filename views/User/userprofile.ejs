@@ -35,7 +35,7 @@
             </li> -->
             <!-- Dropdown -->
             <li class="nav-item dropdown mr-5 pr-5">              
-              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i>User</a>
+              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i><%= user.username %></a>
               <div class="dropdown-menu bg-dark border-0">
                 <a class="dropdown-item bg-dark text-white" href="/home"><i class="fad fa-envelope mr-1"></i>Notifications</a>
                 <a class="dropdown-item active bg-dark text-white" href="/profile"><i class="fad fa-user mr-1"></i>Profile</a>
@@ -194,15 +194,7 @@
       var app = angular.module('myApp', []);
       app.controller('profileController', function($scope, $http) {
 
-        $http({
-          method : 'GET',
-          url : '/profile',
-        }).then(function success(response) {
-          // console.log(response.data);
-          $scope.userprofile = response.data;
-        },function error(response) {
-          alert('error occured, please try again later!')
-        })
+        
       
       });
 

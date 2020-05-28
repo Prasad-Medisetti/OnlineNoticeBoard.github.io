@@ -95,22 +95,26 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label" for="usersname">Username :</label>
-                  <input type="text" class="form-control" id="usersname" placeholder="Enter username" required ng-model="newuser.username">
+                  <input type="text" class="form-control" id="usersname" placeholder="Enter username" required ng-model="newuser.username" minlength="8">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
+                  <div class="text-warning py-1 text-center">username should contain minimum of 8 characters</div>
                 </div>
-                <div class="form-row my-2 px-2">
-                  <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="male" name="gender" value="male" ng-model="newuser.gender">
-                    <label class="custom-control-label" for="male">Male</label>
-                  </div>
-                  <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="female" name="gender" value="female" ng-model="newuser.gender">
-                    <label class="custom-control-label" for="female">Female</label>
-                  </div>
-                  <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="others" name="gender" value="others" ng-model="newuser.gender">
-                    <label class="custom-control-label" for="others">Others</label>
+                <div class="form-group">
+                  <label class="control-label" for="gender">Gender :</label>
+                  <div class="container-fluids">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="male" name="gender" value="male" ng-model="newuser.gender">
+                      <label class="custom-control-label" for="male">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="female" name="gender" value="female" ng-model="newuser.gender">
+                      <label class="custom-control-label" for="female">Female</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="others" name="gender" value="others" ng-model="newuser.gender">
+                      <label class="custom-control-label" for="others">Others</label>
+                    </div>  
                   </div>
                 </div>
                 <div class="form-group">
@@ -122,12 +126,13 @@
                 <div class="form-group">
                   <label class="control-label" for="pswd">Password :</label>
                   <div class="input-group border rounded">
-                    <input type="password" class="form-control pwd border-0"  id="pswd" placeholder="Enter password" required required ng-model="newuser.password">
+                    <input type="password" class="form-control pwd border-0"  id="pswd" placeholder="Enter password" required ng-model="newuser.password" minlength="8">
                     <span class="input-group-btn">
                       <a class="reveal btn btn-white" type="button" ng-show="revealPwd" ng-click="revealPwd = false"><i class="far fa-eye"></i></a>
                       <a class="reveal btn btn-white" type="button" ng-hide="revealPwd"  ng-click="revealPwd = true"><i class="far fa-eye-slash"></i></a>
                     </span> 
                   </div>  
+                  <div class="text-warning my-1 text-center">password should contain minimum of 8 characters</div>
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>

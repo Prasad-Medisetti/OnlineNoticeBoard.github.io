@@ -12,6 +12,7 @@ var db = monk('localhost:27017/OnlineNoticeBoard');
 var image = db.get('image');
 var users = db.get('users');
 var admin = db.get('admin');
+var notices = db.get('notices');
 
 /* saving image */
 var multer = require('multer');
@@ -100,6 +101,9 @@ router.get('/dashboard', function(req, res, next) {
   if(req.session && req.session.admin){
     // console.log(req.session.user);
     res.locals.admin = req.session.admin;
+    var noticeboard = notices.find({});
+    console.log(noticeboard);
+    res.locals.notices = noticeboard;
     res.render('Admin/admindashboard');
   }
   else{
@@ -151,6 +155,17 @@ router.get('/getuser', function(req, res) {
       res.send(docs);
     }
   })
+});
+
+router.get('/getnotices', function(req, res) {
+  notices.find({}, function(err,docs) {
+    if(err){
+      console.log(err);
+    } else {
+      // console.log(docs);
+      res.send(docs);
+    }
+  });
 });
 
 router.post('/imageupload', upload.single('image'), function(req, res) {
@@ -228,6 +243,25 @@ router.post('/postadminlogin', function(req, res) {
       res.sendStatus(500);
     }
   });
+});
+
+router.post('/postnotice', function(req, res) {
+
+  var notice = {
+    title : req.body.title,
+    subject : req.body.subject,
+    description : req.body.description,
+    postedOn : moment().format('YYYY-MM-DD hh:mm:ss A')
+  }
+  // console.log(notice);
+  notices.insert(notice, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(docs);
+    }
+  })
+
 });
 
 module.exports = router;

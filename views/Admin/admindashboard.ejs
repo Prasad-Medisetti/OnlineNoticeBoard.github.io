@@ -34,8 +34,8 @@
               <a class="nav-link" href="/contact"><i class="fad fa-id-badge mr-1"></i>Contact</a>
             </li> -->
             <!-- Dropdown -->
-            <li class="nav-item dropdown mr-4 pr-5">              
-              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i>Admin</a>
+            <li class="nav-item dropdown mr-5 pr-5">              
+              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i><%= admin.username %></a>
               <div class="dropdown-menu bg-dark border-0">
                 <a class="dropdown-item active bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Dashboard<span class="sr-only">(current)</span></a>
                 <a class="dropdown-item bg-dark text-white" href="/postnotice"><i class="fad fa-paper-plane mr-1"></i>Post Notice</a>
@@ -50,7 +50,7 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container-fluid mt-5 pt-5 mb-n5 pb-n4" ng-app="changePasswordApp" ng-controller="changeAdminPasswordController">
+    <main role="main" class="container-fluid mt-5 pt-5 mb-n5 pb-n4" ng-app="myApp" ng-controller="myController">
       <div class="container col-md-11">
         <div class="card">
           <h2 class="card-header h3 text-center font-weight-bold">Dashboard</h2>
@@ -65,11 +65,11 @@
                     <th>Actions</th>
                   </tr>
                 </thead>
-                <tbody class="text-center">
+                <tbody class="text-center" ng-repeat="notice in notices">
                   <tr>
-                    <td>1</td>
-                    <td>Subject</td>
-                    <td>27-05-2020 12:00 PM</td>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ notice.subject }}</td>
+                    <td>{{ notice.postedOn }}</td>
                     <td>
                       <!-- Button to Open the Modal -->
                       <a class="btn btn-light" data-toggle="modal" data-target="#myModal"><i class="far fa-info-circle"></i></a>
@@ -80,14 +80,14 @@
                           <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                              <h1 class="modal-title">Modal Heading</h1>
+                              <h1 class="modal-title">{{ notice.title }}</h1>
                               <button type="button" class="btn btn-outline-danger" class="close" data-dismiss="modal">×</button>
                             </div>
                             
                             <!-- Modal body -->
                             <div class="modal-body text-justify">
-                              <h3>Some text to enable scrolling..</h3>
-                              <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                              <h3>{{ notice.subject }}</h3>
+                              <p class="lead">{{ notice.description }}</p>
                               <!-- <img src="/uploads/bg.jpg" class="img-responsive rounded w-100 h-100" alt=""> -->
                             </div>
                             
@@ -98,15 +98,6 @@
                           </div>
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Subject</td>
-                    <td>dolor</td>
-                    <td>
-                      <!-- Button to Open the Modal -->
-                      <a class="btn btn-light"><i class="far fa-info-circle"></i></a>
                     </td>
                   </tr>
                 </tbody>
@@ -129,5 +120,25 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+    <script>
+      var app = angular.module('myApp', []);
+      app.controller('myController', ['$scope', '$http', function($scope, $http) {
+
+
+        $http({
+          method : 'GET',
+          url : '/getnotices'
+        }).then(function success(response) {
+          // console.log(response.data);
+          $scope.notices = response.data;
+          console.log(response.data.sort())
+        }, function error(response) {
+          alert('Error Occured, Please try again...!');
+        })
+
+      }]);
+    </script>
   </body>
 </html>
