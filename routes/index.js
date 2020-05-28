@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var monk = require('monk');
 var QRCode = require('qrcode');
+var moment = require('moment');
 
 var Cryptr = require('cryptr');
 var cryptr = new Cryptr('myTotalySecretKey');
@@ -31,7 +32,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/home', function(req, res, next) {
   if(req.session && req.session.user){
-    console.log(req.session.user);
+    // console.log(req.session.user);
     res.locals.user = req.session.user;
     res.render('User/userhome');
   }
@@ -169,9 +170,19 @@ router.post('/postsignup', function(req, res) {
     password : cryptr.encrypt(req.body.password),
     // password : req.body.password,
     phone : req.body.phone,
-    dob : req.body.dob
+    dob : moment(req.body.dob).format('YYYY-MM-DD')
   }
-  console.log(data);
+
+  /* Adds an avatar based on gender */
+  if (data.gender = 'male') {
+    data.img = '/uploads/user-m.jpg';
+  } else if (data.gender = 'female') {
+    data.img = '/uploads/user-f.jpg';
+  } else {
+    data.img = '/uploads/user.jpg';
+  }
+
+  // console.log(data);
   users.insert(data, function(err, docs) {
     if (err) {
       console.log(err);

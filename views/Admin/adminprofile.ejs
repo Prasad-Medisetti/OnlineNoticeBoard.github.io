@@ -50,13 +50,13 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container-fluid my-5" ng-app="myApp" ng-init="disabled = true; editProfileImg = true" ng-controller="profileController">
+    <main role="main" class="container-fluid my-5" ng-app="myApp" ng-init="chooseGender = true; disabled = true; editProfileImg = true" ng-controller="profileController">
       <h1 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">Profile</h1>
-      <form class="container col-md-8 p-3 bg-light shadow-lg rounded-lg border" ng-init="user = { name : 'Prasad'}">
+      <form class="container col-md-8 p-3 bg-light shadow-lg rounded-lg border">
         <div class="row px-3 text-center">
           <div class="col p-3">
             <p ng-bind="userpro.firstname"></p>
-            <img src="/uploads/user.jpg" class="rounded-circle border p-1 bg-light" alt="user" height="180" width="180">
+            <img src="<%= admin.img %>" class="rounded-circle border p-1 bg-light" alt="user" height="180" width="180">
           </div>
         </div>
         <div class="row text-center">
@@ -73,32 +73,27 @@
         <div class="row">
           <div class="col border-right">
             <label class="control-label" for="fname">First Name :</label>
-            <input required type="text" class="form-control" id="fname" ng-model="userpro.firstname" ng-disabled="disabled">
+            <input required type="text" class="form-control" id="fname" value="<%= admin.firstname %>" ng-disabled="disabled">
           </div>
           <div class="col border-left">
             <label class="control-label" for="lname">Last Name :</label>
-            <input required type="text" class="form-control" id="lname" value="Medisetti" ng-disabled="disabled">
+            <input required type="text" class="form-control" id="lname" value="<%= admin.lastname %>" ng-disabled="disabled">
           </div>
         </div>
-        <!-- <div class="row px-3">
-          <div class="col border-right">Prasad</div><div class="col border-left">Medisetti</div>
-        </div> -->
         <hr>
         <div class="row">
           <div class="col">
             <label class="control-label" for="uname">User Name :</label>
-            <input required type="text" class="form-control" id="uname" value="PrasadM" ng-disabled="disabled">
+            <input required type="text" class="form-control" id="uname" value="<%= admin.username %>" ng-disabled="disabled">
           </div>
         </div>
-        <!-- <div class="row px-3">
-          <div class="col border-right">Username</div><div class="col border-left">uname</div>
-        </div> -->
         <hr>
         <div class="form-row my-2 px-2">
           <label class="control-label" for="gender">Gender :</label>
-          <div class="container-fluid mx-n3">
+          <input type="text" class="form-control" id="gender" ng-show="chooseGender" value="<%= admin.gender %>" ng-disabled="disabled">
+          <div class="container-fluid mx-n3" ng-hide="chooseGender">
             <div class="custom-control custom-radio custom-control-inline">
-              <input required type="radio" class="custom-control-input" id="male" name="gender" value="male" ng-disabled="disabled">
+              <input required type="radio" class="custom-control-input" id="male" name="gender" value="male" checked ng-disabled="disabled">
               <label class="custom-control-label" for="male">Male</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
@@ -112,36 +107,30 @@
           </div>
         </div>
         <hr>
-        <!-- <div class="row px-3">
-          <div class="col border-right">Email</div><div class="col border-left">prasadmedisetti34@gmail.com</div>
-        </div> -->
         <div class="row">
           <div class="col">
             <label class="control-label" for="uname">Email :</label>
-            <input required type="email" class="form-control" id="email" value="prasadmedisetti34@gmail.com" ng-disabled="disabled">
+            <input required type="email" class="form-control" id="email"  value="<%= admin.email %>" ng-disabled="disabled">
           </div>
         </div>
         <hr>
-        <!-- <div class="row px-3">
-          <div class="col border-right">Gender</div><div class="col border-left">Male</div>
-        </div> -->
         <div class="row">
           <div class="col">
             <label class="control-label" for="Phone">Phone :</label>
-            <input required type="tel" class="form-control" id="Phone" value="9666502388" ng-disabled="disabled">
+            <input required type="tel" class="form-control" id="Phone" value="<%= admin.phone %>" ng-disabled="disabled">
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col">
             <label class="control-label" for="dob">Date Of Birth :</label>
-            <input required type="date" class="form-control" name="dob" id="dob" value="2000-06-27" ng-disabled="disabled">
+            <input required type="date" class="form-control" name="dob" id="dob"  value="<%= admin.dob %>" ng-disabled="disabled">
           </div>
         </div>
         <div class="row mt-3">
           <div class="col">
-            <button class="btn btn-info w-100" ng-hide="editUser" ng-click="disabled = false; editUser = true"><i class="fad fa-user-edit mr-1"></i>Edit Profile</button>
-            <button type="submit" class="btn btn-success w-100" ng-show="editUser" ng-click="disabled = true; editUser = false"><i class="fad fa-user-check mr-1"></i>Update Profile</button>
+            <button class="btn btn-info w-100" ng-hide="editUser" ng-click="chooseGender = false; disabled = false; editUser = true"><i class="fad fa-user-edit mr-1"></i>Edit Profile</button>
+            <button type="submit" class="btn btn-success w-100" ng-show="editUser" ng-click="chooseGender = true; disabled = true; editUser = false"><i class="fad fa-user-check mr-1"></i>Update Profile</button>
           </div>
         </div>
       </form>

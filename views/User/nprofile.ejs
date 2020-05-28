@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.13.0/css/pro.min.css">
 
   </head>
-  <body id="page-top"">
+  <body id="page-top">
     <header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -34,12 +34,13 @@
               <a class="nav-link" href="/contact"><i class="fad fa-id-badge mr-1"></i>Contact</a>
             </li> -->
             <!-- Dropdown -->
-            <li class="nav-item dropdown mr-5 pr-5">              
-              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i>User</a>
+            <li class="nav-item dropdown mr-4 pr-5">              
+              <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i> <%=admin.username%> Admin</a>
               <div class="dropdown-menu bg-dark border-0">
-                <a class="dropdown-item bg-dark text-white" href="/home"><i class="fad fa-envelope mr-1"></i>Notifications</a>
-                <a class="dropdown-item active bg-dark text-white" href="/profile"><i class="fad fa-user mr-1"></i>Profile</a>
-                <a class="dropdown-item bg-dark text-white" href="/changepassword"><i class="fad fa-key mr-1"></i>Change Password</a>
+                <a class="dropdown-item bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Dashboard</a>
+                <a class="dropdown-item bg-dark text-white" href="/postnotice"><i class="fad fa-paper-plane mr-1"></i>Post Notice</a>
+                <a class="dropdown-item active bg-dark text-white" href="/adminprofile"><i class="fad fa-user mr-1"></i>Profile</a>
+                <a class="dropdown-item bg-dark text-white" href="/changeadminpassword"><i class="fad fa-key mr-1"></i>Change Password</a>
                 <a class="dropdown-item bg-dark text-white" href="/logout"><i class="fad fa-sign-out mr-1"></i>Logout</a>
               </div>
             </li>
@@ -49,13 +50,13 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container-fluid my-5" ng-app="myApp" ng-init="chooseGender = true; disabled = true; editProfileImg = true" ng-controller="profileController">
-      <h1 class="h2 text-center mb-4 p-3 shadow border rounded-lg">Profile</h1>
-      <form class="container col-md-8 p-3 bg-light shadow-lg rounded-lg border" ng-init="user = { name : 'Prasad'}">
+    <main role="main" class="container-fluid my-5" ng-app="myApp" ng-init="disabled = true; editProfileImg = true" ng-controller="profileController">
+      <h1 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">Profile</h1>
+      <form class="container col-md-8 p-3 bg-light shadow-lg rounded-lg border">
         <div class="row px-3 text-center">
           <div class="col p-3">
             <p ng-bind="userpro.firstname"></p>
-            <img src="<%= user.img %>" class="rounded-circle border p-1 bg-light" alt="user" height="180" width="180">
+            <img src="/uploads/user.jpg" class="rounded-circle border p-1 bg-light" alt="user" height="180" width="180">
           </div>
         </div>
         <div class="row text-center">
@@ -72,11 +73,11 @@
         <div class="row">
           <div class="col border-right">
             <label class="control-label" for="fname">First Name :</label>
-            <input required type="text" class="form-control" id="fname" value="<%= user.firstname %>" ng-disabled="disabled">
+            <input required type="text" class="form-control" id="fname" value="<%=admin.firstname%>" ng-disabled="disabled">
           </div>
           <div class="col border-left">
             <label class="control-label" for="lname">Last Name :</label>
-            <input required type="text" class="form-control" id="lname" value="<%= user.lastname %>" ng-disabled="disabled">
+            <input required type="text" class="form-control" id="lname" value="<%=admin.lastname%>" ng-disabled="disabled">
           </div>
         </div>
         <!-- <div class="row px-3">
@@ -86,7 +87,7 @@
         <div class="row">
           <div class="col">
             <label class="control-label" for="uname">User Name :</label>
-            <input required type="text" class="form-control" id="uname"  value="<%= user.username %>" ng-disabled="disabled">
+            <input required type="text" class="form-control" id="uname" value="<%=admin.username%>" ng-disabled="disabled">
           </div>
         </div>
         <!-- <div class="row px-3">
@@ -95,10 +96,9 @@
         <hr>
         <div class="form-row my-2 px-2">
           <label class="control-label" for="gender">Gender :</label>
-          <input type="text" class="form-control" ng-show="chooseGender" value="<%= user.gender %>" ng-disabled="disabled">
-          <div class="container-fluid mx-n3" ng-hide="chooseGender">
+          <div class="container-fluid mx-n3">
             <div class="custom-control custom-radio custom-control-inline">
-              <input required type="radio" class="custom-control-input" id="male" name="gender" value="male" checked ng-disabled="disabled">
+              <input required type="radio" class="custom-control-input" id="male" name="gender" value="male" ng-disabled="disabled">
               <label class="custom-control-label" for="male">Male</label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
@@ -118,7 +118,7 @@
         <div class="row">
           <div class="col">
             <label class="control-label" for="uname">Email :</label>
-            <input required type="email" class="form-control" id="email"  value="<%= user.email %>" ng-disabled="disabled">
+            <input required type="email" class="form-control" id="email" value="<%=admin.email%>" ng-disabled="disabled">
           </div>
         </div>
         <hr>
@@ -128,20 +128,20 @@
         <div class="row">
           <div class="col">
             <label class="control-label" for="Phone">Phone :</label>
-            <input required type="tel" class="form-control" id="Phone"  value="<%= user.phone %>" ng-disabled="disabled">
+            <input required type="tel" class="form-control" id="Phone" value="<%=admin.phone%>" ng-disabled="disabled">
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col">
             <label class="control-label" for="dob">Date Of Birth :</label>
-            <input required type="date" class="form-control" name="dob" id="dob"  value="<%= user.dob %>" ng-disabled="disabled">
+            <input required type="date" class="form-control" name="dob" id="dob" value="<%=admin.dob%>" ng-disabled="disabled">
           </div>
         </div>
         <div class="row mt-3">
           <div class="col">
-            <button class="btn btn-info w-100" ng-hide="editUser" ng-click="chooseGender = false; disabled = false; editUser = true"><i class="fad fa-user-edit mr-1"></i>Edit Profile</button>
-            <button type="submit" class="btn btn-success w-100" ng-show="editUser" ng-click="chooseGender = true; disabled = true; editUser = false""><i class="fad fa-user-check mr-1"></i>Update Profile</button>
+            <button class="btn btn-info w-100" ng-hide="editUser" ng-click="disabled = false; editUser = true"><i class="fad fa-user-edit mr-1"></i>Edit Profile</button>
+            <button type="submit" class="btn btn-success w-100" ng-show="editUser" ng-click="disabled = true; editUser = false"><i class="fad fa-user-check mr-1"></i>Update Profile</button>
           </div>
         </div>
       </form>
@@ -194,15 +194,7 @@
       var app = angular.module('myApp', []);
       app.controller('profileController', function($scope, $http) {
 
-        $http({
-          method : 'GET',
-          url : '/profile',
-        }).then(function success(response) {
-          // console.log(response.data);
-          $scope.userprofile = response.data;
-        },function error(response) {
-          alert('error occured, please try again later!')
-        })
+        
       
       });
 
