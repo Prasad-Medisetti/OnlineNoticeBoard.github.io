@@ -124,6 +124,18 @@ router.get('/changeadminpassword', function(req, res, next) {
   }
 });
 
+router.get('/changepassword', function(req, res, next) {
+  if(req.session && req.session.user){
+    // console.log(req.session.user);
+    res.locals.user = req.session.user;
+    res.render('User/changepassword');
+  }
+  else{
+    req.session.reset();
+    res.redirect('/');
+  }
+});
+
 router.get('/image', function(req,res){
   image.find({}, function(err,docs){
     console.log(docs);
@@ -209,38 +221,48 @@ router.post('/postsignup', function(req, res) {
 
 router.post('/postuserlogin', function(req, res) {
   users.findOne({ 'email' : req.body.email }, function(err, data) {
-    var password1 = req.body.password;
-    var password2 = cryptr.decrypt(data.password);
-    // var password2 = data.password;
-    delete data.password;
-    // console.log(password1);
-    // console.log(password2);
-    // console.log(data);
-    req.session.user = data;
-    // req.session.user = data[0];
-    if(password1 == password2) {
-      res.sendStatus(200);
+    // console.log(data)
+    if (data != null) {
+      var password1 = req.body.password;
+      var password2 = cryptr.decrypt(data.password);
+      // var password2 = data.password;
+      delete data.password;
+      // console.log(password1);
+      // console.log(password2);
+      // console.log(data);
+      req.session.user = data;
+      // req.session.user = data[0];
+      if(password1 == password2) {
+        res.sendStatus(200);
+      } else {
+        res.send('Invalid Credentials...');
+      }
     } else {
-      res.sendStatus(500);
+      res.send('Invalid Credentials...');
     }
   });
 });
 
 router.post('/postadminlogin', function(req, res) {
   admin.findOne({ 'email' : req.body.email }, function(err, data) {
-    var password1 = req.body.password;
-    var password2 = cryptr.decrypt(data.password);
-    // var password2 = data.password;
-    delete data.password;
-    // console.log(password1);
-    // console.log(password2);
-    // console.log(data);
-    req.session.admin = data;
-    // req.session.user = data[0];
-    if(password1 == password2) {
-      res.sendStatus(200);
+    // console.log(data)
+    if (data != null) {
+      var password1 = req.body.password;
+      var password2 = cryptr.decrypt(data.password);
+      // var password2 = data.password;
+      delete data.password;
+      // console.log(password1);
+      // console.log(password2);
+      // console.log(data);
+      req.session.admin = data;
+      // req.session.user = data[0];
+      if(password1 == password2) {
+        res.sendStatus(200);
+      } else {
+        res.send('Invalid Credentials...');
+      }
     } else {
-      res.sendStatus(500);
+      res.send('Invalid Credentials...');
     }
   });
 });
@@ -262,6 +284,39 @@ router.post('/postnotice', function(req, res) {
     }
   })
 
+});
+
+/* Chnage Password */
+router.put('/changeadminpwd/', function(req, res) {
+  if (req.body.password == req.body.retypepassword) {
+    admin.update({ email : req.session.admin.email }, 
+      { $set : { password : cryptr.encrypt(req.body.password)} }, function(err, docs) {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(docs);
+        res.send('Changed Password Successfully...');
+      }
+    })
+  } else {
+    res.send('Passwords not matched')
+  }
+});
+
+router.put('/changeuserpwd', function(req, res) {
+  if (req.body.password == req.body.retypepassword) {
+    users.update({ email : req.session.user.email }, 
+      { $set : { password : cryptr.encrypt(req.body.password)} }, function(err, docs) {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(docs);
+        res.send('Changed Password Successflly...');
+      }
+    })
+  } else {
+    res.send('Passwords not matched')
+  }
 });
 
 module.exports = router;
