@@ -14,6 +14,10 @@ var users = db.get('users');
 var admin = db.get('admin');
 var notices = db.get('notices');
 
+/* Mailer */
+var randomstring = require("randomstring");
+var nodemailer = require('nodemailer');
+
 /* saving image */
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -153,8 +157,8 @@ router.get('/adminlogout', function(req, res){
   res.redirect('/admin');
 });
 
-router.get('/forgot', function(req, res){
-  res.render('forgot');
+router.get('/forgotpassword', function(req, res){
+  res.render('User/forgotpassword');
 });
 
 router.get('/getuser', function(req, res) {
@@ -317,6 +321,44 @@ router.put('/changeuserpwd', function(req, res) {
   } else {
     res.send('Passwords not matched')
   }
+});
+
+// On clicking forgot link and generating OTP to our registered mail
+router.put('/postforgot',function(req,res)
+{
+	var email = req.body.email;
+  var newpassword = randomstring.generate(8);
+  console.log(newpassword);
+	users.update({ email: email }, { $set : { password : cryptr.encrypt(newpassword) } });
+  // res.sendStatus(200);
+	var transporter = nodemailer.createTransport({
+		service : 'gmail',
+		auth:{
+			user : 'pm961.cse@gmail.com',
+			pass : 'PrasadM@cse961'
+		}
+	});
+
+	var mailOptions={
+		from : 'Online Notice Board',
+		to : email,
+		subject : 'Online Notice Board Account Password Resetted',
+    // text : 'Your New is '+newpassword, // plain text
+    html: "<p>Your New is <b>"+newpassword+"</b></p>" // html body
+	};
+
+	transporter.sendMail(mailOptions,function(err,info)
+	{
+		if(err)
+		{
+			console.log(err);
+		}
+		else{
+			// console.log('Email sent...');  
+			res.send(info);
+		}
+  });
+
 });
 
 module.exports = router;
