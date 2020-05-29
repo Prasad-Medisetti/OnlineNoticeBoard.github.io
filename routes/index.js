@@ -22,13 +22,23 @@ var nodemailer = require('nodemailer');
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/uploads/')
+    cb(null, 'public/uploads/profiles/')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
-});
-var upload = multer({ storage: storage });
+}) 
+var upload = multer({ storage: storage })
+
+// var profile = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, 'public/uploads/Profiles/')
+//   },
+//   filename: function (req, file, cb) {
+//     cb(null, file.originalname)
+//   }
+// })
+// var userprofileupload = multer({ profile : profile })
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -206,11 +216,11 @@ router.post('/postsignup', function(req, res) {
 
   /* Adds an avatar based on gender */
   if (data.gender = 'male') {
-    data.img = '/uploads/user-m.jpg';
+    data.img = '/uploads/profiles/user-m.jpg';
   } else if (data.gender = 'female') {
-    data.img = '/uploads/user-f.jpg';
+    data.img = '/uploads/profiles/user-f.jpg';
   } else {
-    data.img = '/uploads/user.jpg';
+    data.img = '/uploads/profiles/user.jpg';
   }
 
   // console.log(data);
@@ -417,6 +427,27 @@ router.put('/postforgot',function(req,res)
 		}
   });
 
+});
+
+/* Upload Profile Image */
+// router.post('/userprofileimgupload', upload.single('image'), function(req, res) {
+//   console.log(req.file);
+//   users.update({ email : req.session.user.email }, {$set : { img : req.file.originalname } }, function(err, docs) { 
+//       if (err) {
+//         res.send(err);
+//       } else {
+//         res.send(docs);
+//       }
+//     })
+//   // res.redirect('/lo');
+//   // res.redirect('/logout')
+// });
+
+router.post('/userprofileimgupload', upload.single('image'), function(req, res) {
+  console.log(req.file);
+  console.log(req.session.user)
+  // users.update({ email : req.session. "image": 'public/uploads/profiles/'+req.file.originalname});
+  // res.redirect('/image');
 });
 
 module.exports = router;

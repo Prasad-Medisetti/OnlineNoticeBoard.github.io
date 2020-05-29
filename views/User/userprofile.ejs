@@ -52,20 +52,19 @@
     <!-- Begin page content -->
     <main role="main" class="container-fluid my-5" ng-app="profileApp" ng-init="chooseGender = true; disabled = true; editProfileImg = true; editProfile = true" ng-controller="profileController">
       <h1 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">Profile</h1>
-      <form class="container col-md-8 col-lg-6 pb-3 bg-light shadow-lg rounded-lg border" validate>
+      <form class="container col-md-8 col-lg-6 pb-3 bg-light shadow-lg rounded-lg border" action="/userprofileimgupload" method="POST" enctype="multipart/form-data">
         <div class="row text-center">
           <div class="col">
             <img src="<%= user.img %>" class="rounded-circle border p-1 bg-light" alt="user" height="180" width="180">
           </div>
         </div>
-        <div class="row text-center">
-          <div class="px-3 col">
-            <div class="custom-file">
-              <input required type="file" class="custom-file-input required" accept="image/*" id="customFile" ng-modal="profileImg" ng-disabled="editProfileImg">
-              <label class="custom-file-label" for="customFile">Choose an Image</label>
-            </div>
-            <button class="btn btn-info my-2 w-100" ng-show="editProfileImg" ng-click="editProfileImg = false">Change Profile Image</button>
-            <button type="submit" class="btn btn-success my-2 w-100" ng-hide="editProfileImg" ng-click="editProfileImg = true">Update Profile Image</button>
+        <div class="row p-3 ">
+          <div class="col">
+            <!-- <label class="custom-file-label" for="uname">Choose An Image :</label> -->
+            <!-- <input required type="file" class="form-control my-1" name="profilePic" ng-disabled="editProfileImg"> -->
+            <input type="file" class="form-control-file border my-2" name="image" ng-disabled="editProfileImg" required>
+            <button class="btn btn-info w-100" ng-show="editProfileImg" ng-click="editProfileImg = false">Change Profile Image</button>
+            <input type="submit" class="btn btn-success w-100" ng-hide="editProfileImg" ng-click="editProfileImg = true" value="Update Profile Image">
           </div>
         </div>
       </form>
@@ -205,12 +204,6 @@
         }, false);
       })();
 
-
-      // Add the following code if you want the name of the file appear on select
-      $(".custom-file-input required").on("change", function() {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-      });
     </script>
 
     <script>
