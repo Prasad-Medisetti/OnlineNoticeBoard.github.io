@@ -272,7 +272,6 @@ router.post('/postadminlogin', function(req, res) {
 });
 
 router.post('/postnotice', function(req, res) {
-
   var notice = {
     title : req.body.title,
     subject : req.body.subject,
@@ -287,7 +286,6 @@ router.post('/postnotice', function(req, res) {
       res.send(docs);
     }
   })
-
 });
 
 /* Chnage Password */
@@ -321,6 +319,66 @@ router.put('/changeuserpwd', function(req, res) {
   } else {
     res.send('Passwords not matched')
   }
+});
+
+router.put('/updateadminprofile', function(req, res) {
+  // var data = {
+  //   firstname : req.body.firstname,
+  //   lastname : req.body.lastname,
+  //   username : req.body.username,
+  //   gender : req.body.gender,
+  //   email : req.body.email,
+  //   phone : req.body.phone,
+  //   dob : moment(req.body.dob).format('YYYY-MM-DD')
+  // }
+  // console.log(data);
+  admin.update({ email : req.session.admin.email }, { $set : {
+      firstname : req.body.firstname,
+      lastname : req.body.lastname,
+      username : req.body.username,
+      gender : req.body.gender,
+      email : req.body.email,
+      phone : req.body.phone,
+      dob : moment(req.body.dob).format('YYYY-MM-DD')
+    } 
+  }, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(docs);
+      res.sendStatus(200);  
+    }
+  })
+});
+
+router.put('/updateprofile', function(req, res) {
+  // var data = {
+  //   firstname : req.body.firstname,
+  //   lastname : req.body.lastname,
+  //   username : req.body.username,
+  //   gender : req.body.gender,
+  //   email : req.body.email,
+  //   phone : req.body.phone,
+  //   dob : moment(req.body.dob).format('YYYY-MM-DD')
+  // }
+  // console.log(data);
+  users.update({ email : req.session.user.email }, { $set : {
+      firstname : req.body.firstname,
+      lastname : req.body.lastname,
+      username : req.body.username,
+      gender : req.body.gender,
+      email : req.body.email,
+      phone : req.body.phone,
+      dob : moment(req.body.dob).format('YYYY-MM-DD')
+    } 
+  }, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(docs);
+      res.sendStatus(200);  
+    }
+  })
 });
 
 // On clicking forgot link and generating OTP to our registered mail

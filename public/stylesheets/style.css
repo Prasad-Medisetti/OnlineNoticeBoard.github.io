@@ -115,6 +115,10 @@ li > a:hover, li > a:hover i {
   /* text-decoration: underline !important; */
 }
 
+.dropdown > .nav-link {
+  text-transform: none !important;
+}
+
 hr {
   border-width: 2px !important;
 }
