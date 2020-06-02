@@ -458,4 +458,19 @@ router.post('/userprofileimgupload', upload.single('image'), function(req, res) 
   }
 });
 
+router.post('/adminprofileimgupload', upload.single('image'), function(req, res) {
+  // console.log(req.file);
+  if (req.file) {
+    // console.log(req.session.user);
+    // console.log(req.file.filename);
+    if (users.update({ email : req.session.admin.email}, {$set : {"img": '/uploads/profiles/'+req.file.filename}})) {
+      res.redirect('/profile')
+    } else {
+      res.sendStatus(500);
+    }
+  } else {
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;

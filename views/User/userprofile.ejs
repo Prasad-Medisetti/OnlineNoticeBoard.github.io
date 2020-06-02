@@ -56,7 +56,11 @@
         <div class="row text-center">
           <div class="col my-2">
             <img src="<%= user.img %>" class="rounded-circle border p-1 bg-light" alt="user" height="180" width="180">
-            <button class="btn btn-info d-block mt-2 mx-auto" ng-show="editProfileImg" ng-click="editProfileImg = false">Change Profile Picture</button>
+            <div class="col mt-2">
+              <button class="btn btn-info d-inline mx-auto" ng-show="editProfileImg" ng-click="editProfileImg = false">Change Profile Picture</button>
+              <!-- <p><%= user.img %></p> -->
+              <button class="btn btn-danger d-inline" type="button" ng-click="user.img = '/uploads/user-m.jpg'"><i class="fa fa-trash"></i></button>
+            </div>
           </div>
         </div>
         <div class="row p-3 " ng-hide="editProfileImg">
