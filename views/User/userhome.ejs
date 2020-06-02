@@ -79,14 +79,14 @@
                       <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header">
-                          <h1 class="modal-title">{{ notice.title }}</h1>
+                          <h1 class="modal-title" ng-bind="notice.title"></h1>
                           <button type="button" class="btn btn-outline-danger" class="close" data-dismiss="modal">×</button>
                         </div>
                         
                         <!-- Modal body -->
                         <div class="modal-body text-justify">
-                          <h3>{{ notice.subject }}</h3>
-                          <p class="lead">{{ notice.description }}</p>
+                          <h3 ng-model="notice.subject"></h3>
+                          <p class="lead" ng-bind="notice.description"></p>
                           <!-- <img src="/uploads/bg.jpg" class="img-responsive rounded w-100 h-100" alt=""> -->
                         </div>
                         

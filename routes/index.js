@@ -25,7 +25,7 @@ var storage = multer.diskStorage({
     cb(null, 'public/uploads/profiles/')
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname)
+    cb(null, file.fieldname + '-' + Date.now() +'.'+ file.originalname.split('.')[1])
   }
 }) 
 var upload = multer({ storage: storage })
@@ -444,10 +444,18 @@ router.put('/postforgot',function(req,res)
 // });
 
 router.post('/userprofileimgupload', upload.single('image'), function(req, res) {
-  console.log(req.file);
-  console.log(req.session.user)
-  // users.update({ email : req.session. "image": 'public/uploads/profiles/'+req.file.originalname});
-  // res.redirect('/image');
+  // console.log(req.file);
+  if (req.file) {
+    // console.log(req.session.user);
+    // console.log(req.file.filename);
+    if (users.update({ email : req.session.user.email}, {$set : {"img": '/uploads/profiles/'+req.file.filename}})) {
+      res.redirect('/profile')
+    } else {
+      res.sendStatus(500);
+    }
+  } else {
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;
