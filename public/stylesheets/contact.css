@@ -39,6 +39,8 @@
   transform: translate3d(0px, -29px, 0px);
 }
 
+
+
 /* Social Media Icons */
 .social-media-list {
   position: relative;
@@ -58,14 +60,13 @@
   display: inline-block;
   height: 70px;
   width: 70px;
-  margin: 10px auto;
+  margin: 1px auto;
   line-height: 70px;
-  border: solid 1px transparent;
   border-radius: 50%;
-  color: #fff;
-  background-color: rgb(27,27,27);
+  color: rgb(27,27,27);
+  background-color: rgb(100,100,100);
+  box-shadow: 0 0 0 1px rgb(225,225,225);
   cursor: pointer; 
-  /* box-shadow: 0 0 10px rgb(27,27,27); */
   transition: all .2s ease-in-out;
 }
 
@@ -79,13 +80,12 @@
   line-height: 70px;
   border-radius: 50%;
   opacity: 0;
+  box-shadow: 0 0 0 1px rgb(27,27,27);
   transition: all .2s ease-in-out;
 }
 
 .social-media-list li:hover {
-  background-color: transparent; 
-  border: solid 2px rgb(27,27,27);
-  box-shadow: 0 0 0 5px rgb(202, 202, 202);
+  background-color: #000; 
 }
 
 .social-media-list li:hover:after {
@@ -95,7 +95,7 @@
 }
 
 .social-media-list li:hover a {
-  color: #111;
+  color: #eee;
 }
 
 .copyright {
