@@ -39,19 +39,19 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container-fluid my-5">
+    <main role="main" class="container-fluid my-5" ng-app="feedbackApp">
       <h1 class="h2 text-center mb-3 p-3 shadow-lg border rounded-lg">Contact</h1>
       <div class="container col-md-8 rounded shadow mt-4 px-0 pt-3 pb-3 border ">
         <div class="col">
-          <form class="" role="form" method="post">
+          <form class="" role="form" method="post" ng-controller="feedbackController">
             <div class="form-group">
-              <input type="text" class="form-control" id="name" placeholder="NAME" name="name" value="">
+              <input type="text" class="form-control" id="name" placeholder="NAME" name="name" ng-model="feedback.name">
             </div>
             <div class="form-group">
-              <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" value="">
+              <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" ng-model="feedback.email">
             </div>
-            <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message"></textarea>
-            <button class="btn btn-primary send-button text-center form-control mt-3" id="submit" type="submit" value="SEND">
+            <textarea class="form-control" rows="10" placeholder="MESSAGE" name="message"  ng-model="feedback.message"></textarea>
+            <button class="btn btn-primary send-button text-center form-control mt-3" id="submit" type="submit" value="SEND" ng-click="postfeedback(feedback)">
               <div class="button">
                 <i class="fa fa-paper-plane"></i><span class="send-text">SEND</span>
               </div>
@@ -65,16 +65,15 @@
               <a href="mailto:prasadmedisetti34@gmail.com" title="Send me an email" class="list-group-item list-group-item-action align-middle"><i class="fad fa-envelope fa-lg mr-2"></i>prasadmedisetti34@gmail.com</a>
             </div>
             <ul class="social-media-list my-2">
-              <li><a href="" target="_blank">
-                <i class="fab fa-github" aria-hidden="true"></i></a>
+              <li onclick="window.open('#', '_self');"><a target="_blank"><i class="fab fa-github" aria-hidden="true"></i></a>
               </li>
-              <li><a href="" target="_blank" class="contact-icon">
+              <li onclick="window.open('#', '_self');"><a href="" target="_blank" class="contact-icon">
                 <i class="fab fa-whatsapp" aria-hidden="true"></i></a>
               </li>
-              <li><a href="" target="_blank" class="contact-icon">
+              <li onclick="window.open('#', '_self');"><a href="" target="_blank" class="contact-icon">
                 <i class="fab fa-instagram" aria-hidden="true"></i></a>
               </li>
-              <li><a href="" target="_blank" class="contact-icon">
+              <li onclick="window.open('#', '_self');"><a href="" target="_blank" class="contact-icon">
                 <i class="fab fa-linkedin" aria-hidden="true"></i></a>
               </li>
             </ul>
@@ -96,5 +95,33 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+
+    <script>
+      var app = angular.module('feedbackApp', []);
+
+      /* Controller for Admin changePassword */
+      app.controller('feedbackController', function($scope, $http, $window) {
+
+        $scope.postfeedback = function(change){
+          
+          $http({
+              method : 'POST',
+              url : '/postfeedback',
+              data : $scope.feedback
+          })
+          .then(function success(response) {
+            alert('Feedback Sent...');
+            $scope.feedback = {};
+          }, function error(response) {
+            alert('Error Occured, Please try again...!');
+            $scope.feedback = {};
+            // console.log($scope.feedback)
+          })
+
+        }
+
+      });
+    </script>
   </body>
 </html>

@@ -13,6 +13,7 @@ var image = db.get('image');
 var users = db.get('users');
 var admin = db.get('admin');
 var notices = db.get('notices');
+var feedbacks = db.get('feedbacks');
 
 /* Mailer */
 var randomstring = require("randomstring");
@@ -471,6 +472,23 @@ router.post('/adminprofileimgupload', upload.single('image'), function(req, res)
   } else {
     res.sendStatus(500);
   }
+});
+
+router.post('/postfeedback', function(req, res) {
+  var feedback = {
+    name : req.body.name,
+    email : req.body.email,
+    message : req.body.message,
+    postedOn : moment().format('YYYY-MM-DD hh:mm:ss A')
+  }
+  // console.log(notice);
+  feedbacks.insert(feedback, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(docs);
+    }
+  })
 });
 
 module.exports = router;
