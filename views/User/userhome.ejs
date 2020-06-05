@@ -71,22 +71,22 @@
                 <td>{{ notice.postedOn }}</td>
                 <td>
                   <!-- Button to Open the Modal -->
-                  <a class="btn btn-light" data-toggle="modal" data-target="#myModel"><i class="far fa-info-circle"></i></a>
-  
-                  <!-- The Modal -->
-                  <div class="modal fade" id="myModel">
+                  <a class="btn btn-info text-white" ng-click="testmodel(notice)" data-toggle="modal" data-target="#myModal"><i class="far fa-info-circle"></i></a>
+              </tr>
+              <!-- The Modal -->
+                  <div class="modal fade" id="myModal">
                     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                       <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header">
-                          <h1 class="modal-title" ng-bind="notice.title"></h1>
+                          <h1 class="modal-title">{{ data.title }}</h1>
                           <button type="button" class="btn btn-outline-danger" class="close" data-dismiss="modal">×</button>
                         </div>
                         
                         <!-- Modal body -->
                         <div class="modal-body text-justify">
-                          <h3 ng-model="notice.subject"></h3>
-                          <p class="lead" ng-bind="notice.description"></p>
+                          <h3>{{ data.subject }}</h3>
+                          <p class="lead">{{ data.description }}</p>
                           <!-- <img src="/uploads/bg.jpg" class="img-responsive rounded w-100 h-100" alt=""> -->
                         </div>
                         
@@ -97,8 +97,6 @@
                       </div>
                     </div>
                   </div>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -122,9 +120,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 
 <script>
-  
-</script>
-<script>
   var app = angular.module('myApp', []);
   app.controller('myController', ['$scope', '$http', function($scope, $http) {
 
@@ -139,6 +134,10 @@
     }, function error(response) {
       alert('Error Occured, Please try again...!');
     })
+
+    $scope.testmodel = function(notice){
+      $scope.data = notice;
+    }
 
   }]);
 </script>

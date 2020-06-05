@@ -89,7 +89,8 @@ footer .myName {
 }
 
 footer .myName:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  letter-spacing: 0.5px;
 } 
 
 a:hover {

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.13.0/css/pro.min.css">
 
   </head>
-  <body id="page-top"">
+  <body id="page-top">
     <header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -72,35 +72,34 @@
                     <td>{{ notice.postedOn }}</td>
                     <td>
                       <!-- Button to Open the Modal -->
-                      <a class="btn btn-info text-white" data-toggle="modal" data-target="#myModal"><i class="far fa-info-circle"></i></a>
-                      <a class="btn btn-danger text-white" data-toggle="modal" data-target="#myModal"><i class="far fa-trash"></i></a>
-      
-                      <!-- The Modal -->
+                      <a class="btn btn-info text-white" ng-click="testmodel(notice)" data-toggle="modal" data-target="#myModal"><i class="far fa-info-circle"></i></a>
+                      <a class="btn btn-danger text-white"><i class="far fa-trash"></i></a>
+                    </td>
+                  </tr>
+                  <!-- The Modal -->
                       <div class="modal fade" id="myModal">
-                        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                           <div class="modal-content">
                             <!-- Modal Header -->
                             <div class="modal-header">
-                              <h1 class="modal-title">{{ notice.title }}</h1>
+                              <h1 class="modal-title">{{ data.title }}</h1>
                               <button type="button" class="btn btn-outline-danger" class="close" data-dismiss="modal">×</button>
                             </div>
                             
                             <!-- Modal body -->
                             <div class="modal-body text-justify">
-                              <h3>{{ notice.subject }}</h3>
-                              <p class="lead">{{ notice.description }}</p>
+                              <h3>{{ data.subject }}</h3>
+                              <p class="lead">{{ data.description }}</p>
                               <!-- <img src="/uploads/bg.jpg" class="img-responsive rounded w-100 h-100" alt=""> -->
                             </div>
                             
                             <!-- Modal footer -->
-                            <div class="modal-footer">
+                            <!-- <div class="modal-footer">
                               <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>
-                    </td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -138,6 +137,10 @@
         }, function error(response) {
           alert('Error Occured, Please try again...!');
         })
+
+        $scope.testmodel = function(notice){
+          $scope.data = notice;
+        }
 
       }]);
     </script>
