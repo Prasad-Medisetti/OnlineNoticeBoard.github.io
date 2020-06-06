@@ -331,7 +331,8 @@ router.post('/postnotice', fileupload.single('file'), function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.send(docs);
+      // res.send(docs);
+      res.redirect("/postnotice");
     }
   })
 });

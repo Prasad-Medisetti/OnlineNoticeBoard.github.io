@@ -78,30 +78,33 @@
                     </td>
                   </tr>
                   <!-- The Modal -->
-                      <div class="modal fade" id="myModal">
-                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-                          <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                              <h1 class="modal-title">{{ data.title }}</h1>
-                              <button type="button" class="btn btn-sm btn-outline-danger" class="close" data-dismiss="modal">×</button>
-                            </div>
-                            
-                            <!-- Modal body -->
-                            <div class="modal-body text-justify">
-                              <h3>{{ data.subject }}</h3>
-                              <p class="lead">{{ data.description }}</p>
-                              <a class="btn btn-light " href="{{ data.file }}"><i class="fad fa-eye"></i></a>
-                              <!-- <img src="/uploads/bg.jpg" class="img-responsive rounded w-100 h-100" alt=""> -->
-                            </div>
-                            
-                            <!-- Modal footer -->
-                            <!-- <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                            </div> -->
-                          </div>
+                  <div class="modal fade" id="myModal">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h1 class="modal-title">{{ data.title }}</h1>
+                          <button type="button" class="btn btn-sm btn-outline-danger" class="close" data-dismiss="modal">×</button>
                         </div>
+                        
+                        <!-- Modal body -->
+                        <div class="modal-body text-justify">
+                          <h3>{{ data.subject }}</h3>
+                          <p class="lead">{{ data.description }}</p>
+                          <div class="my-1 mx-auto">
+                            <iframe class="img-resoponsive rounded w-100 border shadow-lg" style="min-height:300px;" src="{{ data.file }}"><i class="fad fa-file-alt"></i></iframe>
+                            <a class="col btn btn-success mt-2" download href="{{ data.file }}"><i class="fad fa-download mr-1"></i>Download</a>
+                          </div>
+                          <!-- <img src="{{ data.file }}" class="img-responsive rounded w-100 h-100" alt=""> -->
+                        </div>
+                        
+                        <!-- Modal footer -->
+                        <!-- <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                        </div> -->
                       </div>
+                    </div>
+                  </div>
                 </tbody>
               </table>
             </div>

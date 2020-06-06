@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.13.0/css/pro.min.css">
 
   </head>
-  <body id="page-top"">
+  <body id="page-top">
     <header>
       <!-- Fixed navbar -->
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -59,19 +59,19 @@
             <form class="needs-validation form-group" novalidate action="/postnotice" method="POST" enctype="multipart/form-data">
               <div class="form-group">
                 <label class="control-label" for="title" class="form-label">Title :</label>
-                <input type="text" class="form-control" id="title" placeholder="Enter title" required ng-model="notice.title">
+                <input type="text" class="form-control" id="title" placeholder="Enter title" required name="title">
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
               </div>
               <div class="form-group">
                 <label class="control-label" for="subject" class="form-label">Subject :</label>
-                <input type="text" class="form-control" id="subject" placeholder="Enter subject" required ng-model="notice.subject">
+                <input type="text" class="form-control" id="subject" placeholder="Enter subject" required name="subject">
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
               </div>
               <div class="form-group">
                 <label class="control-label" for="description" class="form-label">Description :</label>
-                <textarea class="form-control" id="description" cols="30" rows="5" placeholder="Enter description" required ng-model="notice.description"></textarea>
+                <textarea class="form-control" id="description" cols="30" rows="5" placeholder="Enter description" required name="description"></textarea>
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
               </div>
@@ -82,7 +82,7 @@
                 </div>
               </div>
               <div class="form-group mb-n2">
-                <button type="submit" class="btn btn-primary w-100 font-weight-bold" required ng-click="postnotice(notice)"><i class="fad fa-paper-plane mr-1"></i>Post Notice</button>
+                <button type="submit" class="btn btn-primary w-100 font-weight-bold"><i class="fad fa-paper-plane mr-1"></i>Post Notice</button>
               </div>
             </form>
           </div>
@@ -137,21 +137,21 @@
       var app = angular.module('postNoticeApp', []);
       app.controller('postNoticeController', function($scope, $http, $window) {
 
-        $scope.postnotice = function(post) {
-          $http({
-            method:'POST',
-            url: '/postnotice',
-            data: $scope.notice
-          }).then(function success(response) {
-            alert('Posted Successfully...');
-            $scope.notice = {};
-            $window.location.href = '/dashboard';
-            // console.log()
-          }, function error(response) {
-            alert('Something went wrong, Please try again...');
-            $window.location.href = '/dashboard';
-          });
-        }
+        // $scope.postnotice = function(post) {
+        //   $http({
+        //     method:'POST',
+        //     url: '/postnotice',
+        //     data: $scope.notice
+        //   }).then(function success(response) {
+        //     alert('Posted Successfully...');
+        //     $scope.notice = {};
+        //     $window.location.href = '/dashboard';
+        //     // console.log()
+        //   }, function error(response) {
+        //     alert('Something went wrong, Please try again...');
+        //     $window.location.href = '/dashboard';
+        //   });
+        // }
       
       });
     </script>

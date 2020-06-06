@@ -48,32 +48,33 @@
       </nav>
     </header>
 
-<!-- Begin page content -->
-<main role="main" class="container-fluid my-5 pt-5 pb-n4">
-  <div class="container col-md-11">
-    <div class="card">
-      <h2 class="card-header h3 text-center font-weight-bold">Notifications</h2>
-      <div class="card-body p-2">
-        <div class="table-responsive shadow-lg">
-          <table class="table table-bordered table-hover mb-n1">
-            <thead class="text-center">
-              <tr>
-                <th>#</th>
-                <th>Subject</th>
-                <th>Posted on</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody class="text-center" ng-repeat="notice in notices">
-              <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ notice.subject }}</td>
-                <td>{{ notice.postedOn }}</td>
-                <td>
-                  <!-- Button to Open the Modal -->
-                  <a class="btn btn-info  btn-sm text-white" ng-click="testmodel(notice)" data-toggle="modal" data-target="#myModal"><i class="far fa-info-circle"></i></a>
-              </tr>
-              <!-- The Modal -->
+    <!-- Begin page content -->
+    <main role="main" class="container-fluid my-5 pt-5 pb-n4">
+      <div class="container col-md-11">
+        <div class="card">
+          <h2 class="card-header h3 text-center font-weight-bold">Notifications</h2>
+          <div class="card-body p-2">
+            <div class="table-responsive shadow-lg">
+              <table class="table table-bordered table-hover mb-n1">
+                <thead class="text-center">
+                  <tr>
+                    <th>#</th>
+                    <th>Subject</th>
+                    <th>Posted on</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center" ng-repeat="notice in notices">
+                  <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ notice.subject }}</td>
+                    <td>{{ notice.postedOn }}</td>
+                    <td>
+                      <!-- Button to Open the Modal -->
+                      <a class="btn btn-info btn-sm text-white m-1" ng-click="testmodel(notice)" data-toggle="modal" data-target="#myModal"><i class="far fa-info-circle"></i></a>
+                    </td>
+                  </tr>
+                  <!-- The Modal -->
                   <div class="modal fade" id="myModal">
                     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                       <div class="modal-content">
@@ -87,7 +88,11 @@
                         <div class="modal-body text-justify">
                           <h3>{{ data.subject }}</h3>
                           <p class="lead">{{ data.description }}</p>
-                          <!-- <img src="/uploads/bg.jpg" class="img-responsive rounded w-100 h-100" alt=""> -->
+                          <div class="my-1 mx-auto">
+                            <iframe class="img-resoponsive rounded w-100 border shadow-lg" style="min-height:300px;" src="{{ data.file }}"><i class="fad fa-file-alt"></i></iframe>
+                            <a class="col btn btn-success mt-2" download href="{{ data.file }}"><i class="fad fa-download mr-1"></i>Download</a>
+                          </div>
+                          <!-- <img src="{{ data.file }}" class="img-responsive rounded w-100 h-100" alt=""> -->
                         </div>
                         
                         <!-- Modal footer -->
@@ -97,49 +102,49 @@
                       </div>
                     </div>
                   </div>
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</main>
+    </main>
 
-<footer class="py-5 bg-dark">
-  <div class="container text-center text-white">
-    <p>Designed by <span class="myName">Prasad Medisetti</span></p>
-    <p>Copyright <i class="fad fa-copyright"></i> 2020</p>
-  </div>
-</footer>
+    <footer class="py-5 bg-dark">
+      <div class="container text-center text-white">
+        <p>Designed by <span class="myName">Prasad Medisetti</span></p>
+        <p>Copyright <i class="fad fa-copyright"></i> 2020</p>
+      </div>
+    </footer>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
 
-<script>
-  var app = angular.module('myApp', []);
-  app.controller('myController', ['$scope', '$http', function($scope, $http) {
+    <script>
+      var app = angular.module('myApp', []);
+      app.controller('myController', ['$scope', '$http', function($scope, $http) {
 
 
-    $http({
-      method : 'GET',
-      url : '/getnotices'
-    }).then(function success(response) {
-      // console.log(response.data);
-      $scope.notices = response.data;
-      console.log(response.data.sort())
-    }, function error(response) {
-      alert('Error Occured, Please try again...!');
-    })
+        $http({
+          method : 'GET',
+          url : '/getnotices'
+        }).then(function success(response) {
+          // console.log(response.data);
+          $scope.notices = response.data;
+          console.log(response.data.sort())
+        }, function error(response) {
+          alert('Error Occured, Please try again...!');
+        })
 
-    $scope.testmodel = function(notice){
-      $scope.data = notice;
-    }
+        $scope.testmodel = function(notice){
+          $scope.data = notice;
+        }
 
-  }]);
-</script>
-</body>
+      }]);
+    </script>
+  </body>
 </html>
