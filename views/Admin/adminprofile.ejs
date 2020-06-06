@@ -39,9 +39,10 @@
               <div class="dropdown-menu bg-dark border-0">
                 <a class="dropdown-item bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Dashboard</a>
                 <a class="dropdown-item bg-dark text-white" href="/postnotice"><i class="fad fa-paper-plane mr-1"></i>Post Notice</a>
+                <a class="dropdown-item bg-dark text-white" href="/feedbacks"><i class="fad fa-comments-alt mr-1"></i>Feedbacks</a>
                 <a class="dropdown-item active bg-dark text-white" href="/adminprofile"><i class="fad fa-user mr-1"></i>Profile</a>
                 <a class="dropdown-item bg-dark text-white" href="/changeadminpassword"><i class="fad fa-key mr-1"></i>Change Password</a>
-                <a class="dropdown-item bg-dark text-white" href="/logout"><i class="fad fa-sign-out mr-1"></i>Logout</a>
+                <a class="dropdown-item bg-dark text-white" href="/adminlogout"><i class="fad fa-sign-out mr-1"></i>Logout</a>
               </div>
             </li>
           </ul>
@@ -50,7 +51,7 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container-fluid my-5" ng-app="profileApp" ng-init="chooseGender = true; disabled = true; editProfileImg = true; editProfile = true" ng-controller="profileController">
+    <main role="main" class="container-fluid my-5 py-2" ng-app="profileApp" ng-init="chooseGender = true; disabled = true; editProfileImg = true; editProfile = true" ng-controller="profileController">
       <h1 class="h2 text-center text-dark col mb-3 p-3 shadow border rounded-lg font-weight-bold">Profile</h1>
       <form class="container col-md-8 col-lg-6 pb-3 bg-light shadow-lg rounded-lg border" action="/adminprofileimgupload" method="POST" enctype="multipart/form-data">
         <div class="row text-center">
@@ -59,7 +60,8 @@
             <div class="col mt-2">
               <button class="btn btn-info d-inline mx-auto" ng-show="editProfileImg" ng-click="editProfileImg = false">Change Profile Picture</button>
               <!-- <p><%= admin.img %></p> -->
-              <button class="btn btn-danger d-inline" type="button" ng-click="admin.img = '/uploads/user-m.jpg'"><i class="fa fa-trash"></i></button>
+              <button class="btn btn-danger d-inline" type="button" ng-show="editProfileImg" ng-click="resetAdminProfilePic()"><i class="fa fa-trash"></i></button>
+            <div class="mt-2 mb-n2"><span class="font-weight-bold text-warning">Note :</span> Changes are applied on next login!</div>
             </div>
           </div>
         </div>
@@ -222,7 +224,6 @@
       app.controller('profileController', function($scope, $http) {
 
         $scope.updateAdminProfile = function(prof){
-          
           $http({
               method : 'PUT',
               url : '/updateadminprofile',
@@ -236,7 +237,18 @@
             alert('Error Occured, Please try again...!');
             $scope.profile = {}
           })
+        }
 
+        $scope.resetAdminProfilePic = function() {
+          //console.log(users._id);
+          $http({
+            method : 'PUT',
+            url : '/resetadminprofilepic'
+          }).then(function success(response){
+            alert('Profile pic resetted succesfully...')
+          }, function error(response){
+            alert('Error occured, please try again');
+          })
         }
       
       });

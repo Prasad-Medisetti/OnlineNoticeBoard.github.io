@@ -59,8 +59,9 @@
             <div class="col mt-2">
               <button class="btn btn-info d-inline mx-auto" ng-show="editProfileImg" ng-click="editProfileImg = false">Change Profile Picture</button>
               <!-- <p><%= user.img %></p> -->
-              <button class="btn btn-danger d-inline" type="button" ng-click="user.img = '/uploads/user-m.jpg'"><i class="fa fa-trash"></i></button>
+              <button class="btn btn-danger d-inline" type="button" ng-show="editProfileImg" ng-click="resetProfilePic()"><i class="fa fa-trash"></i></button>
             </div>
+            <div class="mt-2 mb-n2"><span class="font-weight-bold text-warning">Note :</span> Changes are applied on next login!</div>
           </div>
         </div>
         <div class="row p-3 " ng-hide="editProfileImg">
@@ -230,6 +231,18 @@
             $scope.profile = {}
           })
 
+        }
+
+        $scope.resetProfilePic = function() {
+          //console.log(users._id);
+          $http({
+            method : 'PUT',
+            url : '/resetprofilepic'
+          }).then(function success(response){
+            alert('Profile pic resetted succesfully...')
+          }, function error(response){
+            alert('Error occured, please try again');
+          })
         }
       
       });

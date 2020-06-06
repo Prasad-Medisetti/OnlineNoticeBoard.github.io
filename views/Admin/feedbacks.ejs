@@ -37,9 +37,9 @@
             <li class="nav-item dropdown mr-5 pr-5">              
               <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown"><i class="fad fa-user-circle mr-1"></i><%= admin.username %></a>
               <div class="dropdown-menu bg-dark border-0">
-                <a class="dropdown-item active bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Dashboard<span class="sr-only">(current)</span></a>
+                <a class="dropdown-item bg-dark text-white" href="/dashboard"><i class="fad fa-envelope mr-1"></i>Dashboard</a>
                 <a class="dropdown-item bg-dark text-white" href="/postnotice"><i class="fad fa-paper-plane mr-1"></i>Post Notice</a>
-                <a class="dropdown-item bg-dark text-white" href="/feedbacks"><i class="fad fa-comments-alt mr-1"></i>Feedbacks</a>
+                <a class="dropdown-item active bg-dark text-white" href="/feedbacks"><i class="fad fa-comments-alt mr-1"></i>Feedbacks<span class="sr-only">(current)</span></a>
                 <a class="dropdown-item bg-dark text-white" href="/adminprofile"><i class="fad fa-user mr-1"></i>Profile</a>
                 <a class="dropdown-item bg-dark text-white" href="/changeadminpassword"><i class="fad fa-key mr-1"></i>Change Password</a>
                 <a class="dropdown-item bg-dark text-white" href="/adminlogout">Logout</a>
@@ -54,54 +54,28 @@
     <main role="main" class="container-fluid my-5 py-2" ng-app="myApp" ng-controller="myController">
       <div class="container col-md-11">
         <div class="card">
-          <h2 class="card-header h3 text-center font-weight-bold">Dashboard</h2>
+          <h2 class="card-header h3 text-center font-weight-bold">Feedbacks</h2>
           <div class="card-body p-2">
             <div class="table-responsive shadow-lg">
               <table class="table table-bordered table-hover mb-n1">
                 <thead class="text-center">
                   <tr>
                     <th>#</th>
-                    <th>Subject</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Posted on</th>
-                    <th>Actions</th>
+                    <th>Feedback</th>
                   </tr>
                 </thead>
-                <tbody class="text-center" ng-repeat="notice in notices">
+                <tbody class="text-center" ng-repeat="feedback in feedbacks">
                   <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ notice.subject }}</td>
-                    <td>{{ notice.postedOn }}</td>
-                    <td>
-                      <!-- Button to Open the Modal -->
-                      <a class="btn btn-info btn-sm text-white m-1" ng-click="testmodel(notice)" data-toggle="modal" data-target="#myModal"><i class="far fa-info-circle"></i></a>
-                      <a class="btn btn-danger btn-sm text-white m-1" ng-click="deleteNotice(notice)"><i class="far fa-trash"></i></a>
-                    </td>
+                    <td>{{ feedback.name }}</td>
+                    <td>{{ feedback.email }}</td>
+                    <td>{{ feedback.postedOn }}</td>
+                    <td>{{ feedback.message }}</td>
+                    <td></td>
                   </tr>
-                  <!-- The Modal -->
-                      <div class="modal fade" id="myModal">
-                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-                          <div class="modal-content">
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                              <h1 class="modal-title">{{ data.title }}</h1>
-                              <button type="button" class="btn btn-sm btn-outline-danger" class="close" data-dismiss="modal">×</button>
-                            </div>
-                            
-                            <!-- Modal body -->
-                            <div class="modal-body text-justify">
-                              <h3>{{ data.subject }}</h3>
-                              <p class="lead">{{ data.description }}</p>
-                              <a class="btn btn-light " href="{{ data.file }}"><i class="fad fa-eye"></i></a>
-                              <!-- <img src="/uploads/bg.jpg" class="img-responsive rounded w-100 h-100" alt=""> -->
-                            </div>
-                            
-                            <!-- Modal footer -->
-                            <!-- <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                            </div> -->
-                          </div>
-                        </div>
-                      </div>
                 </tbody>
               </table>
             </div>
@@ -131,32 +105,14 @@
 
         $http({
           method : 'GET',
-          url : '/getnotices'
+          url : '/getfeedbacks'
         }).then(function success(response) {
           // console.log(response.data);
-          $scope.notices = response.data;
+          $scope.feedbacks = response.data;
           // console.log(response.data.sort())
         }, function error(response) {
           alert('Error Occured, Please try again...!');
         })
-
-        $scope.testmodel = function(notice){
-          $scope.data = notice;
-        }
-
-        $scope.deleteNotice = function(notice) {
-          //console.log(users._id);
-          $http({
-            method : 'DELETE',
-            url : '/deletenotice/'+notice._id
-          }).then(function success(response){
-            alert('Removed Notice Succesfully...')
-            var index = $scope.notices.indexOf(notice);
-            $scope.notices.splice(index, 1);
-          }, function error(response){
-            alert('Error occured, please try again');
-          })
-        }
 
       }]);
     </script>

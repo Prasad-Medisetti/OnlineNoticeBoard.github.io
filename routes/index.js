@@ -31,6 +31,17 @@ var storage = multer.diskStorage({
 }) 
 var upload = multer({ storage: storage })
 
+var filestorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/files/')
+  },
+  filename: function (req, file, cb) {
+    var arr = file.originalname.split('.')
+    cb(null, file.fieldname + '-' + Date.now() +'.'+ arr[arr.length-1])
+  }
+}) 
+var fileupload = multer({ storage: filestorage })
+
 // var profile = multer.diskStorage({
 //   destination: function (req, file, cb) {
 //     cb(null, 'public/uploads/Profiles/')
@@ -63,6 +74,18 @@ router.get('/adminprofile', function(req, res, next) {
     // console.log(req.session.user);
     res.locals.admin = req.session.admin;
     res.render('Admin/adminprofile');
+  }
+  else{
+    req.session.reset();
+    res.redirect('/admin');
+  }
+});
+
+router.get('/feedbacks', function(req, res, next) {
+  if(req.session && req.session.admin){
+    // console.log(req.session.user);
+    res.locals.admin = req.session.admin;
+    res.render('Admin/feedbacks');
   }
   else{
     req.session.reset();
@@ -195,6 +218,17 @@ router.get('/getnotices', function(req, res) {
   });
 });
 
+router.get('/getfeedbacks', function(req, res) {
+  feedbacks.find({}, function(err,docs) {
+    if(err){
+      console.log(err);
+    } else {
+      // console.log(docs);
+      res.send(docs);
+    }
+  });
+});
+
 router.post('/imageupload', upload.single('image'), function(req, res) {
   console.log(req.file);
   image.insert({"image":req.file.originalname});
@@ -224,6 +258,8 @@ router.post('/postsignup', function(req, res) {
     data.img = '/uploads/profiles/user.jpg';
   }
 
+  // check = users.find({ 'email' : req.body.email });
+  // console.log(check)
   // console.log(data);
   users.insert(data, function(err, docs) {
     if (err) {
@@ -282,11 +318,12 @@ router.post('/postadminlogin', function(req, res) {
   });
 });
 
-router.post('/postnotice', function(req, res) {
+router.post('/postnotice', fileupload.single('file'), function(req, res) {
   var notice = {
     title : req.body.title,
     subject : req.body.subject,
     description : req.body.description,
+    file : '/uploads/files/'+req.file.filename,
     postedOn : moment().format('YYYY-MM-DD hh:mm:ss A')
   }
   // console.log(notice);
@@ -297,6 +334,19 @@ router.post('/postnotice', function(req, res) {
       res.send(docs);
     }
   })
+});
+
+router.delete('/deletenotice/:id', function(req,res){
+  //console.log(req.params.id)
+  notices.remove({"_id":req.params.id}, function(err,docs){
+    if(err){
+      console.log(err);
+    }
+    else{
+      //console.log(docs);
+      res.send(docs);
+    }
+  });
 });
 
 /* Chnage Password */
@@ -413,7 +463,7 @@ router.put('/postforgot',function(req,res)
 		to : email,
 		subject : 'Online Notice Board Account Password Resetted',
     // text : 'Your New is '+newpassword, // plain text
-    html: "<p>Your New is <b>"+newpassword+"</b></p>" // html body
+    html: "<p style='font-size:large'>Your New Password is <b>"+newpassword+"</b></p>" // html body
 	};
 
 	transporter.sendMail(mailOptions,function(err,info)
@@ -464,8 +514,8 @@ router.post('/adminprofileimgupload', upload.single('image'), function(req, res)
   if (req.file) {
     // console.log(req.session.user);
     // console.log(req.file.filename);
-    if (users.update({ email : req.session.admin.email}, {$set : {"img": '/uploads/profiles/'+req.file.filename}})) {
-      res.redirect('/profile')
+    if (admin.update({ email : req.session.admin.email}, {$set : {"img": '/uploads/profiles/'+req.file.filename}})) {
+      res.redirect('/adminprofile')
     } else {
       res.sendStatus(500);
     }
@@ -487,6 +537,42 @@ router.post('/postfeedback', function(req, res) {
       console.log(err);
     } else {
       res.send(docs);
+    }
+  })
+});
+
+router.put('/resetadminprofilepic', function(req, res) {
+  if (req.session.admin.gender = 'male') {
+    imge = '/uploads/profiles/user-m.jpg';
+  } else if (req.session.admin.gender = 'female') {
+    imge = '/uploads/profiles/user-f.jpg';
+  } else {
+    imge = '/uploads/profiles/user.jpg';
+  }
+  admin.update({ email : req.session.admin.email }, { $set : { img : imge } }, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(docs);
+      res.sendStatus(200);
+    }
+  })
+});
+
+router.put('/resetprofilepic', function(req, res) {
+  if (req.session.user.gender = 'male') {
+    imge = '/uploads/profiles/user-m.jpg';
+  } else if (req.session.user.gender = 'female') {
+    imge = '/uploads/profiles/user-f.jpg';
+  } else {
+    imge = '/uploads/profiles/user.jpg';
+  }
+  users.update({ email : req.session.user.email }, { $set : { img : imge } }, function(err, docs) {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(docs);
+      res.sendStatus(200);
     }
   })
 });
