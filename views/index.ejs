@@ -81,27 +81,27 @@
               <form class="needs-validation" novalidate>
                 <div class="form-row py-3">
                   <div class="col">
-                    <label class="control-label" for="fname">First Name :</label>
+                    <label class="control-label" for="fname"><span class="h5 text-danger">*</span>First Name :</label>
                     <input type="text" class="form-control" id="fname" placeholder="Enter First Name" required ng-model="newuser.firstname">
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
                   </div>
                   <div class="col">
-                    <label class="control-label" for="lname">Last Name :</label>
+                    <label class="control-label" for="lname"><span class="h5 text-danger">*</span>Last Name :</label>
                     <input type="text" class="form-control" id="lname" placeholder="Enter Last Name" required ng-model="newuser.lastname">
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="usersname">Username :</label>
+                  <label class="control-label" for="usersname"><span class="h5 text-danger">*</span>Username :</label>
                   <input type="text" class="form-control" id="usersname" placeholder="Enter username" required ng-model="newuser.username" minlength="8">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                   <div class="text-warning py-1 text-center">username should contain minimum of 8 characters</div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="gender">Gender :</label>
+                  <label class="control-label" for="gender"><span class="h5 text-danger">*</span>Gender :</label>
                   <div class="container-fluids">
                     <div class="custom-control custom-radio custom-control-inline">
                       <input type="radio" class="custom-control-input" id="male" name="gender" value="male" ng-model="newuser.gender">
@@ -118,13 +118,13 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="email">Email :</label>
+                  <label class="control-label" for="email"><span class="h5 text-danger">*</span>Email :</label>
                   <input type="email" class="form-control" id="email" placeholder="Enter email" required ng-model="newuser.email">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="pswd">Password :</label>
+                  <label class="control-label" for="pswd"><span class="h5 text-danger">*</span>Password :</label>
                   <div class="input-group border rounded">
                     <input type="password" class="form-control pwd border-0"  id="pswd" placeholder="Enter password" required ng-model="newuser.password" minlength="8">
                     <span class="input-group-btn">
@@ -137,13 +137,13 @@
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="phn">Phone :</label>
+                  <label class="control-label" for="phn"><span class="h5 text-danger">*</span>Phone :</label>
                   <input type="text" class="form-control" id="phn" placeholder="Enter phone" required ng-model="newuser.phone">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="dob">Date Of Birth :</label>
+                  <label class="control-label" for="dob"><span class="h5 text-danger">*</span>Date Of Birth :</label>
                   <input type="date" class="form-control" id="dob" placeholder="Enter date of birth" required ng-model="newuser.dob">
                   <div class="valid-feedback">Valid.</div>
                   <div class="invalid-feedback">Please fill out this field.</div>

@@ -8,8 +8,9 @@ var Cryptr = require('cryptr');
 var cryptr = new Cryptr('myTotalySecretKey');
 
 /* Database SetUpd */
-var db = monk('localhost:27017/OnlineNoticeBoard');
-var image = db.get('image');
+// var db = monk('localhost:27017/OnlineNoticeBoard');
+var db = monk('mongodb://Admin:Admin961@ds361998.mlab.com:61998/online-notice-board');
+// var image = db.get('image');
 var users = db.get('users');
 var admin = db.get('admin');
 var notices = db.get('notices');
