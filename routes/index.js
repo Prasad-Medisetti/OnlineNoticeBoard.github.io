@@ -15,6 +15,7 @@ var users = db.get('users');
 var admin = db.get('admin');
 var notices = db.get('notices');
 var feedbacks = db.get('feedbacks');
+console.log(users.find({}));
 
 /* Mailer */
 var randomstring = require("randomstring");
